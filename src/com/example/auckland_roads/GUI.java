@@ -283,6 +283,14 @@ public abstract class GUI {
 			}
 		});
 
+		JButton AStarSearch = new JButton("A* Search");
+		AStarSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				articulationSearch();
+				redraw();
+			}
+		});
+
 		// next, make the search box at the top-right. we manually fix
 		// it's size, and add an action listener to call your code when
 		// the user presses enter.
@@ -351,6 +359,8 @@ public abstract class GUI {
 		navigation.add(east);
 		controls.add(navigation);
 		controls.add(Box.createRigidArea(new Dimension(15, 0)));
+
+		controls.add(AStarSearch);
 		// glue is another invisible component that grows to take up all the
 		// space it can on resize.
 		controls.add(Box.createHorizontalGlue());
@@ -431,7 +441,6 @@ public abstract class GUI {
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
-		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "search");
 
 		drawing.getActionMap().put("left", new AbstractAction() {
 			@Override
@@ -461,15 +470,6 @@ public abstract class GUI {
 			public void actionPerformed(ActionEvent e) {
 				frame.requestFocusInWindow();
 				onMove(Move.EAST);
-				redraw();
-			}
-		});
-		drawing.getActionMap().put("search", new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.requestFocusInWindow();
-				map.searching = !map.searching;
-				articulationSearch();
 				redraw();
 			}
 		});

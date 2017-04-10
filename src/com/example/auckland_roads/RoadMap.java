@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RoadMap extends GUI {
 
-    Double farLeft, farRight, farTop, farBot; // Used to set map boundaries
+    private Double farLeft, farRight, farTop, farBot; // Used to set map boundaries
 
     public static RoadMap map; // Object for this class to be accessed from others
 
@@ -28,7 +28,6 @@ public class RoadMap extends GUI {
     List<String> smaller = new ArrayList<>();
 
     // Searching for articulation points
-    boolean searching = false;
     Node closest = null; // For selected intersection/node
     List<Node> nodesTravelled = new ArrayList<>();
     List<Segment> segmentsTravelled = new ArrayList<>();
@@ -62,18 +61,20 @@ public class RoadMap extends GUI {
     protected void onClick(MouseEvent e) {
         Location mousePos = Location.newFromPoint(e.getPoint(), origin, scale);
         closest = null;
-        if (!searching) selectedNodes.clear();
         for(Node n: nodeMap.values()) {
             double minDist = n.OvalSize/scale;
             double dist = mousePos.distance(n.getLocation());
             if(dist < minDist) {
                 closest = n;
+                drawNodeInfo();
                 break;
             }
         }
         // Allows you to click outside of the node selected, provided it's not another node
         // and it will deselect the node
         if (closest == null) {
+            nodesTravelled.clear();
+            segmentsTravelled.clear();
             selectedNodes.clear();
             output.setText("");
         }
@@ -118,11 +119,57 @@ public class RoadMap extends GUI {
             nodesTravelled.add(endNode);
 
             while (endNode.pathFrom != null) {
-                    nodesTravelled.add(endNode.pathFrom);
-                    endNode = endNode.pathFrom;
+                for (Segment seg : segmentList) {
+                    if (seg.nodeID1.getNodeID() == endNode.pathFrom.getNodeID() && seg.nodeID2.getNodeID() == endNode.getNodeID() ||
+                        seg.nodeID1.getNodeID() == endNode.getNodeID() && seg.nodeID2.getNodeID() == endNode.pathFrom.getNodeID()) {
+                        nodesTravelled.add(endNode.pathFrom);
+                        segmentsTravelled.add(seg);
+                    }
+                }
+                endNode = endNode.pathFrom;
+            }
+            Collections.reverse(nodesTravelled);
+            Collections.reverse(segmentsTravelled);
+            for (Node n : nodesTravelled) {
+                n.reset();
             }
         }
     }
+
+    private void outputTraversedInfo() {
+        HashMap<String, Double> roadNameToLength = new HashMap<>(); // Won't work if going through two streets with same name
+        List<String> roadNameList = new ArrayList<>();
+        double totalDistance = 0;
+        output.setText("");
+
+        for (Segment s : segmentsTravelled) {
+            Road r = roadMap.get(s.getRoadID());
+            String roadName = toTitleCase(r.getName() + ", " + r.getCity());
+
+            if (!roadNameToLength.containsKey(roadName)) {
+                roadNameToLength.put(roadName, s.getLength()); // Length is in km's
+                roadNameList.add(roadName);
+            }
+            else {
+                // Overwrites key with old value of length + new segment length
+                roadNameToLength.put(roadName, roadNameToLength.get(roadName) + s.getLength());
+            }
+            totalDistance += s.getLength();
+        }
+
+        output.append("A* Path Breakdown: \n\n");
+        output.append("Start:\t");
+        boolean start = true;
+        for (String info : roadNameList) {
+            if (!start) output.append("Node:\t");
+            start = false;
+            String str = info + "\t" + (double) Math.round(roadNameToLength.get(info)*1000)/1000 + " km \n";
+            output.append(str);
+        }
+
+        output.append("\nGoal reached. Total Distance: \t\t" + (double) Math.round(totalDistance*1000) / 1000 + "km");
+    }
+
 
     @Override
     protected void onMove(Move m) {
@@ -222,11 +269,11 @@ public class RoadMap extends GUI {
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
             drawNodeInfo();
         }
-        System.out.println(nodesTravelled.size());
         for (Node n: nodesTravelled){
             Point pt = n.getLocation().asPoint(origin, scale);
             g.setColor(Color.RED);
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
+            outputTraversedInfo();
         }
 
     }
