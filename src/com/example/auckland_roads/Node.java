@@ -39,7 +39,7 @@ public class Node {
     }
 
     public void reset() {
-        this.startNode = this;
+        this.startNode = null;
         this.pathFrom = null;
         this.visited = false;
         this.costFromStart = 0;

@@ -128,15 +128,18 @@ public class RoadMap extends GUI {
                 }
                 endNode = endNode.pathFrom;
             }
-            Collections.reverse(nodesTravelled);
-            Collections.reverse(segmentsTravelled);
             for (Node n : nodesTravelled) {
                 n.reset();
             }
+            selectedNodes.clear();
+            outputTraversedInfo();
         }
     }
 
     private void outputTraversedInfo() {
+        Collections.reverse(segmentsTravelled);
+        Collections.reverse(nodesTravelled);
+
         HashMap<String, Double> roadNameToLength = new HashMap<>(); // Won't work if going through two streets with same name
         List<String> roadNameList = new ArrayList<>();
         double totalDistance = 0;
@@ -273,7 +276,6 @@ public class RoadMap extends GUI {
             Point pt = n.getLocation().asPoint(origin, scale);
             g.setColor(Color.RED);
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
-            outputTraversedInfo();
         }
 
     }
