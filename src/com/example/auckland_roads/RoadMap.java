@@ -15,11 +15,12 @@ public class RoadMap extends GUI {
 
     public static RoadMap map; // Object for this class to be accessed from others
 
+    // Main data structures
     public static List<Segment> segmentList = new ArrayList<>();
     public static List<Polygon> polygonList = new ArrayList<>();
     public static Map<Integer, Node> nodeMap = new HashMap<>();
     public static Map<Integer, Road> roadMap = new HashMap<>();
-    public static Map<Integer,Node> selectedNodes = new HashMap<>();
+    public static List<Node> selectedNodes = new ArrayList<>();
 
     // Searching by search bar
     public static Trie trie = new Trie();
@@ -27,14 +28,15 @@ public class RoadMap extends GUI {
     public static String currString;
     List<String> smaller = new ArrayList<>();
 
-    // Searching for articulation points
+    // A* Path finding data structures/fields
     Node closest = null; // For selected intersection/node
     List<Node> nodesTravelled = new ArrayList<>();
     List<Segment> segmentsTravelled = new ArrayList<>();
 
+    // Misc
     JTextArea output = getTextOutputArea();
     Graphics g;
-    boolean first = true;
+    boolean first_run = true;
 
     // Initial scale/origin so that custom scale can be set after redraw is run for first time
     // as onLoad (which sets origin/scale) is run after redraw which requires origin and scale
@@ -47,14 +49,12 @@ public class RoadMap extends GUI {
 
     @Override
     protected void redraw(Graphics g) {
-        if (first) {
+        if (first_run) {
             instructions();
             this.g = g;
-            first= false;
+            first_run = false;
         }
-        drawPolygons(g, origin, scale);
-        drawNodes(g, origin, scale);
-        drawSegments(g, origin, scale);
+        drawMap(g);
     }
 
     @Override
@@ -67,24 +67,24 @@ public class RoadMap extends GUI {
             if(dist < minDist) {
                 closest = n;
                 drawNodeInfo();
+                if (selectedNodes.size() < 2) {
+                    selectedNodes.add(closest);
+                }
                 break;
             }
         }
         // Allows you to click outside of the node selected, provided it's not another node
         // and it will deselect the node
         if (closest == null) {
-            nodesTravelled.clear();
-            segmentsTravelled.clear();
-            selectedNodes.clear();
-            output.setText("");
+            clearSearches();
         }
-        else if (closest != null && selectedNodes.size() < 2) selectedNodes.put(closest.getNodeID(), closest);
     }
 
     @Override
     protected void onSearch() {
+        clearSearches();
+
         currString = GUI.search.getText().toLowerCase();
-        output.setText("");
         if (currString.length() != 0) {
             searchRoadNames = trie.getAll(currString);
             if (searchRoadNames != null) {
@@ -112,8 +112,7 @@ public class RoadMap extends GUI {
     @Override
     protected void articulationSearch() {
         if (selectedNodes.size() == 2) {
-            List<Node> nodes = new ArrayList<Node>(selectedNodes.values());
-            AStarSearch route = new AStarSearch(nodes.get(0), nodes.get(1));
+            AStarSearch route = new AStarSearch(selectedNodes.get(0), selectedNodes.get(1));
             Node endNode = route.search();
 
             nodesTravelled.add(endNode);
@@ -128,51 +127,13 @@ public class RoadMap extends GUI {
                 }
                 endNode = endNode.pathFrom;
             }
-            for (Node n : nodesTravelled) {
-                n.reset();
-            }
+            resetAStarFieldsNodes();
             selectedNodes.clear();
             outputTraversedInfo();
         }
     }
 
-    private void outputTraversedInfo() {
-        Collections.reverse(segmentsTravelled);
-        Collections.reverse(nodesTravelled);
-
-        HashMap<String, Double> roadNameToLength = new HashMap<>(); // Won't work if going through two streets with same name
-        List<String> roadNameList = new ArrayList<>();
-        double totalDistance = 0;
-        output.setText("");
-
-        for (Segment s : segmentsTravelled) {
-            Road r = roadMap.get(s.getRoadID());
-            String roadName = toTitleCase(r.getName() + ", " + r.getCity());
-
-            if (!roadNameToLength.containsKey(roadName)) {
-                roadNameToLength.put(roadName, s.getLength()); // Length is in km's
-                roadNameList.add(roadName);
-            }
-            else {
-                // Overwrites key with old value of length + new segment length
-                roadNameToLength.put(roadName, roadNameToLength.get(roadName) + s.getLength());
-            }
-            totalDistance += s.getLength();
-        }
-
-        output.append("A* Path Breakdown: \n\n");
-        output.append("Start:\t");
-        boolean start = true;
-        for (String info : roadNameList) {
-            if (!start) output.append("Node:\t");
-            start = false;
-            String str = info + "\t" + (double) Math.round(roadNameToLength.get(info)*1000)/1000 + " km \n";
-            output.append(str);
-        }
-
-        output.append("\nGoal reached. Total Distance: \t\t" + (double) Math.round(totalDistance*1000) / 1000 + "km");
-    }
-
+    // Switches for GUI operability inc. buttons, mouse panning and zooming.
 
     @Override
     protected void onMove(Move m) {
@@ -245,19 +206,8 @@ public class RoadMap extends GUI {
         }
     }
 
-    @Override
-    protected void onLoad(File nodes, File roads, File segments, File polygons) {
-        DataLoader dl = new DataLoader();
-        nodeMap = dl.parseNodes(nodes);
-        roadMap = dl.parseRoads(roads);
-        segmentList = dl.parseSegments(segments); // Must add segments last
 
-        if (polygons != null) {
-            polygonList = dl.parsePoly(polygons);
-        }
-
-        startMethod();
-    }
+    // Drawing methods (segments, nodes)
 
     public void drawNodes(Graphics g, Location origin, double scale) {
         for (Node node : nodeMap.values()) {
@@ -266,7 +216,7 @@ public class RoadMap extends GUI {
             g.fillOval(pt.x-node.OvalSize/2, pt.y-node.OvalSize/2,node.OvalSize,node.OvalSize);
         }
 
-        for (Node n: selectedNodes.values()){
+        for (Node n: selectedNodes){
             Point pt = n.getLocation().asPoint(origin, scale);
             g.setColor(Color.YELLOW);
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
@@ -349,40 +299,70 @@ public class RoadMap extends GUI {
         }
     }
 
-    public void setExtremities() {
-        farLeft = Double.POSITIVE_INFINITY;
-        farRight = Double.NEGATIVE_INFINITY;
-        farBot = Double.POSITIVE_INFINITY;
-        farTop = Double.NEGATIVE_INFINITY;
 
-        for (Node node : nodeMap.values()) {
-            if (node.getLocation().x < farLeft) farLeft = node.getLocation().x;
-            if (node.getLocation().x > farRight) farRight = node.getLocation().x;
-            if (node.getLocation().y > farTop) farTop = node.getLocation().y;
-            if (node.getLocation().y < farBot) farBot = node.getLocation().y;
+    // Helper/Refactoring methods
+
+    private void drawMap(Graphics g) {
+        drawPolygons(g, origin, scale);
+        drawNodes(g, origin, scale);
+        drawSegments(g, origin, scale);
+    }
+
+    private void resetAStarFieldsNodes() {
+        for (Node n : nodesTravelled) {
+            n.reset();
         }
     }
 
-    public void startMethod() {
-        Dimension d = this.getDrawingAreaDimension();
-        double windowSize = Math.min(d.getHeight(), d.getWidth());
-
-        // Sets scale based on depth of zoom
-        setExtremities();
-        // scale = (Math.min(windowSize/(farTop-farBot), windowSize/(farRight-farLeft)));
-        origin = Location.newFromLatLon(Location.CENTRE_LAT, Location.CENTRE_LON);  // farLeft, farTop
+    private void clearSearches() {
+        output.setText("");
+        segmentsTravelled.clear();
+        nodesTravelled.clear();
+        selectedNodes.clear();
     }
 
-    public void instructions() {
-        output.setText(
-                "Welcome to my Auckland Maps program designed by Chris Connolly,\n\n" +
-                        "CONTROLS:\n" +
-                        "      Zoom using the mouse wheel (up/down)\n" +
-                        "      Pan using click and drag of map\n" +
-                        "      Pan using arrow keys (up, down, left, right\n" +
-                        "      Search for roads using the search bar\n" +
-                        "      Select nodes (small circles) for info\n"
-        );
+    private void clearAStar() {
+        segmentsTravelled.clear();
+        nodesTravelled.clear();
+    }
+
+    // Displaying information/text
+
+    private void outputTraversedInfo() {
+        Collections.reverse(nodesTravelled);
+        Collections.reverse(segmentsTravelled);
+
+        HashMap<String, Double> roadNameToLength = new HashMap<>(); // Won't work if going through two streets with same name
+        List<String> roadNameList = new ArrayList<>();
+        double totalDistance = 0;
+        output.setText("");
+
+        for (Segment s : segmentsTravelled) {
+            Road r = roadMap.get(s.getRoadID());
+            String roadName = toTitleCase(r.getName() + ", " + r.getCity());
+
+            if (!roadNameToLength.containsKey(roadName)) {
+                roadNameList.add(roadName);
+                roadNameToLength.put(roadName, s.getLength()); // Length is in km's
+            }
+            else {
+                // Overwrites key with old value of length + new segment length
+                roadNameToLength.put(roadName, roadNameToLength.get(roadName) + s.getLength());
+            }
+            totalDistance += s.getLength();
+        }
+
+        output.append("A* Path Breakdown: \n\n");
+        output.append("Start:\t");
+        boolean start = true;
+        for (String info : roadNameList) {
+            if (!start) output.append("Node:\t");
+            start = false;
+            String str = info + "\t" + (double) Math.round(roadNameToLength.get(info)*1000)/1000 + " km \n";
+            output.append(str);
+        }
+
+        output.append("\nGoal reached. Total Distance: \t\t" + (double) Math.round(totalDistance*1000) / 1000 + "km");
     }
 
     public void drawNodeInfo() {
@@ -407,6 +387,57 @@ public class RoadMap extends GUI {
         for (Segment seg : segsIn) {
             Road rd = roadMap.get(seg.getRoadID());
             output.append("Road Name: " + toTitleCase(rd.getName()) + ", " + toTitleCase(rd.getCity()) + "\n");
+        }
+    }
+
+    public void instructions() {
+        output.setText(
+                "Welcome to my Auckland Maps program designed by Chris Connolly,\n\n" +
+                        "CONTROLS:\n" +
+                        "      Zoom using the mouse wheel (up/down)\n" +
+                        "      Pan using click and drag of map\n" +
+                        "      Pan using arrow keys (up, down, left, right\n" +
+                        "      Search for roads using the search bar\n" +
+                        "      Select nodes (small circles) for info\n"
+        );
+    }
+
+    // Methods to execute on load
+
+    @Override
+    protected void onLoad(File nodes, File roads, File segments, File polygons) {
+        DataLoader dl = new DataLoader();
+        nodeMap = dl.parseNodes(nodes);
+        roadMap = dl.parseRoads(roads);
+        segmentList = dl.parseSegments(segments); // Must add segments last
+
+        if (polygons != null) {
+            polygonList = dl.parsePoly(polygons);
+        }
+        startMethod();
+    }
+
+    public void startMethod() {
+        Dimension d = this.getDrawingAreaDimension();
+        double windowSize = Math.min(d.getHeight(), d.getWidth());
+
+        // Sets scale based on depth of zoom
+        setExtremities();
+        // scale = (Math.min(windowSize/(farTop-farBot), windowSize/(farRight-farLeft)));
+        origin = Location.newFromLatLon(Location.CENTRE_LAT, Location.CENTRE_LON);  // farLeft, farTop
+    }
+
+    public void setExtremities() {
+        farLeft = Double.POSITIVE_INFINITY;
+        farRight = Double.NEGATIVE_INFINITY;
+        farBot = Double.POSITIVE_INFINITY;
+        farTop = Double.NEGATIVE_INFINITY;
+
+        for (Node node : nodeMap.values()) {
+            if (node.getLocation().x < farLeft) farLeft = node.getLocation().x;
+            if (node.getLocation().x > farRight) farRight = node.getLocation().x;
+            if (node.getLocation().y > farTop) farTop = node.getLocation().y;
+            if (node.getLocation().y < farBot) farBot = node.getLocation().y;
         }
     }
 

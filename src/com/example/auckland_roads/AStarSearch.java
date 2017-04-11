@@ -33,8 +33,8 @@ public class AStarSearch {
 
             for (Segment segs : priorityNode.currentNode.getSegmentOut()) {
                 Node neighbour = null;
-                if (priorityNode.currentNode == segs.nodeID1) neighbour = segs.nodeID2;
-                if (priorityNode.currentNode == segs.nodeID2) neighbour = segs.nodeID1;
+                if (priorityNode.currentNode.getNodeID() == segs.nodeID1.getNodeID()) neighbour = segs.nodeID2;
+                if (priorityNode.currentNode.getNodeID() == segs.nodeID2.getNodeID()) neighbour = segs.nodeID1;
                 if (!neighbour.visited) {
                     double costToNeighbour = priorityNode.costFromStart + segs.getLength();
                     double estimatedTotal = costToNeighbour + neighbour.getLocation().distance(goal.getLocation());
