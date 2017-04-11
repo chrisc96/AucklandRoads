@@ -28,7 +28,9 @@ public class Node {
     private ArrayList<Segment> segmentOut = new ArrayList<>(); // each node has selection of outgoing edges
     private ArrayList<Segment> segmentIn = new ArrayList<>();
 
-
+    // Articulation points Fields:
+    public int depth = Integer.MAX_VALUE;
+    public ArrayList<Node> neighbours = new ArrayList<>();
 
     public Node(int nodeID, Double lat, Double lon, Color col) {
         this.nodeID = nodeID;

@@ -76,6 +76,11 @@ public class DataLoader {
                 n1.addToSegmentIn(seg);
                 n2.addToSegmentOut(seg);
                 n2.addToSegmentIn(seg);
+
+                // Add opposite node of a segment to neighbours for
+                // articulation point search
+                n1.neighbours.add(n2);
+                n2.neighbours.add(n1);
             }
             data.close();
             return loadSegmentList;
