@@ -2,17 +2,17 @@ package com.example.auckland_roads;
 
 import java.util.Queue;
 
-public class ArticulationPtsTuple {
+class ArticulationPtsTuple {
 
     // Constructor fields
-    public Node node;
-    public ArticulationPtsTuple fromNode;
-    public int depth;
+    public final Node node;
+    final ArticulationPtsTuple fromNode;
+    final int depth;
 
-    public double reachBack;
-    public Queue<Node> children;
+    double reachBack;
+    Queue<Node> children;
 
-    public ArticulationPtsTuple(Node currNode, int depth, ArticulationPtsTuple fromNode) {
+    ArticulationPtsTuple(Node currNode, int depth, ArticulationPtsTuple fromNode) {
         this.node = currNode;
         this.depth = depth;
         this.fromNode = fromNode;

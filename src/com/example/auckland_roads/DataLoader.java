@@ -2,23 +2,19 @@ package com.example.auckland_roads;
 
 import java.awt.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
 
-import static com.example.auckland_roads.RoadMap.map;
+class DataLoader {
 
-public class DataLoader {
-
-    private boolean dataSmall = true; // If false, load big data files
     private BufferedReader data;
 
-    private Map<Integer,Node> loadNodeMap = new HashMap<>();
-    private Map<Integer,Road> loadRoadMap = new HashMap<>();
-    private List<Segment> loadSegmentList = new ArrayList<>();
-    private List<Polygon> polygonList = new ArrayList<>();
+    private final Map<Integer,Node> loadNodeMap = new HashMap<>();
+    private final Map<Integer,Road> loadRoadMap = new HashMap<>();
+    private final List<Segment> loadSegmentList = new ArrayList<>();
+    private final List<Polygon> polygonList = new ArrayList<>();
 
-    public Map<Integer, Node> parseNodes(File nodes) {
+    Map<Integer, Node> parseNodes(File nodes) {
         try {
             data = new BufferedReader(new FileReader(nodes));
             String line;
@@ -31,15 +27,13 @@ public class DataLoader {
             }
             data.close();
             return loadNodeMap;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public List<Segment> parseSegments(File segments) {
+    List<Segment> parseSegments(File segments) {
         try {
             data = new BufferedReader(new FileReader(segments));
             String line;
@@ -68,7 +62,7 @@ public class DataLoader {
 
 
                 // Add segment to relevant road
-                if (map.roadMap.containsKey(roadID)) map.roadMap.get(roadID).addToSegments(seg);
+                if (RoadMap.roadMap.containsKey(roadID)) RoadMap.roadMap.get(roadID).addToSegments(seg);
                 Node n1 = loadNodeMap.get(nodeID1);
                 Node n2 = loadNodeMap.get(nodeID2);
 
@@ -85,15 +79,13 @@ public class DataLoader {
             data.close();
             return loadSegmentList;
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-        public Map<Integer, Road> parseRoads(File roads) {
+    Map<Integer, Road> parseRoads(File roads) {
         try {
             data = new BufferedReader(new FileReader(roads));
             String line;
@@ -115,25 +107,22 @@ public class DataLoader {
                                         speed, roadClass, carNotAllowed, bikeNotAllowed, PedestrianNotAllowed, col);
                 loadRoadMap.put(roadID, road);
 
-                map.trie.add(roadName + " " + city, road);
+                RoadMap.trie.add(roadName + " " + city, road);
             }
-            data.close();
-            return loadRoadMap;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        data.close();
+        return loadRoadMap;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+    return null;
     }
 
-    public List<Polygon> parsePoly(File polygons) {
+    List<Polygon> parsePoly(File polygons) {
         try {
             data = new BufferedReader(new FileReader(polygons));
             String line;
 
-            Polygon poly = null;
+            Polygon poly;
             String type = null;
             Color col = null;
 
@@ -166,15 +155,13 @@ public class DataLoader {
                 }
             }
             return polygonList;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Color determineColorRoad(int roadClass) {
+    private Color determineColorRoad(int roadClass) {
         Color col = null;
 
         switch (roadClass) {
@@ -197,7 +184,7 @@ public class DataLoader {
         return col;
     }
 
-    public Color determineColor(String polyType) {
+    private Color determineColor(String polyType) {
         Color col = null;
 
         // Lakes/Oceans

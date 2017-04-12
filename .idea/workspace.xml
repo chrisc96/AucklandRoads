@@ -4,9 +4,45 @@
     <bookmark url="file://$PROJECT_DIR$/src/com/example/auckland_roads/tests/TrieStructTests.java" description="    public static void main(String[] args) {&#10;     ..." line="47" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fce053b5-1c93-460f-9d8c-2616b0933139" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$10.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$10.class" />
+    <list default="true" id="fce053b5-1c93-460f-9d8c-2616b0933139" name="Default" comment="Refactored Encapsulation, removed redundant code">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$10.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$11.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$12.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$13.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$14.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$15.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$16.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$17.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$18.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$19.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$9.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/AStarSearch.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/AStarSearch.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/AStarSearchNode.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/AStarSearchNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/DataLoader.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/DataLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Location.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Location.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Node.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Node.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Polygon.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Polygon.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Road.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Road.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap$1.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Segment.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Segment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Trie.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/Trie.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/TrieNode.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/TrieNode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearch.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearchNode.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearchNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPtsTuple.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPtsTuple.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/DataLoader.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/DataLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/Location.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/Location.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/Node.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/Node.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/Polygon.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/Polygon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/Road.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/Road.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java" />
     </list>
     <ignored path="AucklandRoads.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,12 +63,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RoadMap.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RoadMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="158" column="13" lean-forward="true" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="187">
+              <caret line="296" column="8" lean-forward="false" selection-start-line="296" selection-start-column="8" selection-end-line="296" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#17773#17774#0" expanded="true" />
+                <element signature="e#17808#17809#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,18 +80,18 @@
       <file leaf-file-name="TrieNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            <state relative-caret-position="463">
+              <caret line="51" column="1" lean-forward="false" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="29" column="58" lean-forward="false" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+            <state relative-caret-position="289">
+              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,8 +102,8 @@
       <file leaf-file-name="AStarSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="52" lean-forward="false" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
+            <state relative-caret-position="557">
+              <caret line="37" column="41" lean-forward="false" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -72,22 +112,10 @@
       <file leaf-file-name="Segment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            <state relative-caret-position="85">
+              <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#644#645#0" expanded="false" />
-                <element signature="e#673#674#0" expanded="false" />
-                <element signature="e#714#715#0" expanded="false" />
-                <element signature="e#750#751#0" expanded="false" />
-                <element signature="e#783#784#0" expanded="false" />
-                <element signature="e#812#813#0" expanded="false" />
-                <element signature="e#856#857#0" expanded="false" />
-                <element signature="e#892#893#0" expanded="false" />
-                <element signature="e#933#934#0" expanded="false" />
-                <element signature="e#962#963#0" expanded="false" />
-                <element signature="e#1014#1015#0" expanded="false" />
-                <element signature="e#1050#1051#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,8 +124,8 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="296" column="35" lean-forward="true" selection-start-line="296" selection-start-column="35" selection-end-line="296" selection-end-column="35" />
+            <state relative-caret-position="333">
+              <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AStarSearchNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearchNode.java">
+      <file leaf-file-name="Trie.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            <state relative-caret-position="68">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -118,8 +146,8 @@
       <file leaf-file-name="ArticulationPtsTuple.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPtsTuple.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -128,27 +156,19 @@
       <file leaf-file-name="ArticulationPts.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-603">
-              <caret line="6" column="53" lean-forward="true" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
-              <folding>
-                <element signature="e#2249#2250#0" expanded="true" />
-                <element signature="e#2278#2279#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="409">
+              <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Location.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Location.java">
+      <file leaf-file-name="Road.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Road.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1819">
-              <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
-              <folding>
-                <element signature="e#3311#3312#0" expanded="false" />
-                <element signature="e#3353#3354#0" expanded="false" />
-                <element signature="e#3460#3461#0" expanded="false" />
-                <element signature="e#3520#3521#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,10 +210,10 @@
       <find>selectedNodes.put</find>
       <find>reverse</find>
       <find>row</find>
-      <find>articulation</find>
       <find>size</find>
       <find>depth</find>
       <find>onLoad</find>
+      <find>articulation</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -216,21 +236,21 @@
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/TrieStrucTests.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/TrieStructTests.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/tests/TrieStructTests.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/tests/Polygon.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Location.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Polygon.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Road.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearchNode.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Location.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearch.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Polygon.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/DataLoader.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPtsTuple.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Node.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java" />
-        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java" />
         <option value="$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Road.java" />
+        <option value="$PROJECT_DIR$/src/com/example/auckland_roads/Node.java" />
       </list>
     </option>
   </component>
@@ -245,6 +265,25 @@
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -954,7 +993,7 @@
       <workItem from="1491797947569" duration="151000" />
       <workItem from="1491815623222" duration="9503000" />
       <workItem from="1491869961232" duration="23891000" />
-      <workItem from="1491992774657" duration="6126000" />
+      <workItem from="1491992774657" duration="9178000" />
     </task>
     <task id="LOCAL-00001" summary="Added A* path output and highlighting">
       <created>1491830449266</created>
@@ -998,7 +1037,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492002292657</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed Articulation Points. Made button toggle their display">
+      <created>1492003754260</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1492003754260</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1034,7 +1080,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248435000" />
+    <option name="totallyTimeSpent" value="251487000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1050,27 +1096,29 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3217768" sideWeight="0.59008527" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552545" sideWeight="0.1663113" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552545" sideWeight="0.17910448" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552545" sideWeight="0.8336887" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.491453" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1705757" sideWeight="0.49635795" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.7574627" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46912244" sideWeight="0.85523504" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3217768" sideWeight="0.5847548" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552545" sideWeight="0.8208955" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.491453" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1705757" sideWeight="0.49635795" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33152762" sideWeight="0.48720682" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18177083" sideWeight="0.503642" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1078,7 +1126,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33152762" sideWeight="0.4914712" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1133,11 +1180,12 @@
     <MESSAGE value="Articulation Points implemented, algorithm must be wrong as incorrect amount of articulation points being printed" />
     <MESSAGE value="Articulation Points Working 99%. Islands causing issues because they are always disconnected from graph." />
     <MESSAGE value="Fixed Articulation Points. Made button toggle their display" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Articulation Points. Made button toggle their display" />
+    <MESSAGE value="Refactored Encapsulation, removed redundant code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Encapsulation, removed redundant code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="65" />
+      <option name="time" value="68" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1146,26 +1194,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Location.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-          <folding>
-            <element signature="e#3311#3312#0" expanded="false" />
-            <element signature="e#3353#3354#0" expanded="false" />
-            <element signature="e#3460#3461#0" expanded="false" />
-            <element signature="e#3520#3521#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1174,19 +1207,7 @@
         <state relative-caret-position="187">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#673#674#0" expanded="false" />
-            <element signature="e#714#715#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#933#934#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-            <element signature="e#1050#1051#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1195,7 +1216,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="42" column="38" lean-forward="false" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#17773#17774#0" expanded="true" />
+            <element signature="e#17808#17809#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1231,12 +1256,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-          <folding>
-            <element signature="e#3311#3312#0" expanded="false" />
-            <element signature="e#3353#3354#0" expanded="false" />
-            <element signature="e#3460#3461#0" expanded="false" />
-            <element signature="e#3520#3521#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1245,19 +1265,7 @@
         <state relative-caret-position="170">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#673#674#0" expanded="false" />
-            <element signature="e#714#715#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#933#934#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-            <element signature="e#1050#1051#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1266,7 +1274,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#17773#17774#0" expanded="true" />
+            <element signature="e#17808#17809#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1303,19 +1315,7 @@
         <state relative-caret-position="289">
           <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#673#674#0" expanded="false" />
-            <element signature="e#714#715#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#933#934#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-            <element signature="e#1050#1051#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1341,12 +1341,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="e#3311#3312#0" expanded="false" />
-            <element signature="e#3353#3354#0" expanded="false" />
-            <element signature="e#3460#3461#0" expanded="false" />
-            <element signature="e#3520#3521#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1366,19 +1361,7 @@
         <state relative-caret-position="255">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#673#674#0" expanded="false" />
-            <element signature="e#714#715#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#933#934#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-            <element signature="e#1050#1051#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1405,12 +1388,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="e#3311#3312#0" expanded="false" />
-            <element signature="e#3353#3354#0" expanded="false" />
-            <element signature="e#3460#3461#0" expanded="false" />
-            <element signature="e#3520#3521#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1443,152 +1421,145 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/tests/TrieStructTests.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearchNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1073">
-          <caret line="74" column="63" lean-forward="true" selection-start-line="74" selection-start-column="63" selection-end-line="74" selection-end-column="63" />
+        <state relative-caret-position="289">
+          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Polygon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        <state relative-caret-position="68">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding>
-            <element signature="e#394#395#0" expanded="false" />
-            <element signature="e#423#424#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Road.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/awt/event/ActionListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1288">
-          <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        <state relative-caret-position="489">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/tests/TrieStructTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/DataLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Location.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        <state relative-caret-position="327">
+          <caret line="108" column="19" lean-forward="false" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="52" lean-forward="false" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
+        <state relative-caret-position="557">
+          <caret line="37" column="41" lean-forward="false" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-            <element signature="e#673#674#0" expanded="false" />
-            <element signature="e#714#715#0" expanded="false" />
-            <element signature="e#750#751#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#892#893#0" expanded="false" />
-            <element signature="e#933#934#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-            <element signature="e#1050#1051#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/AStarSearchNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="113" column="5" lean-forward="false" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
-          <folding>
-            <element signature="e#3311#3312#0" expanded="false" />
-            <element signature="e#3353#3354#0" expanded="false" />
-            <element signature="e#3460#3461#0" expanded="false" />
-            <element signature="e#3520#3521#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="58" lean-forward="false" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPtsTuple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-603">
-          <caret line="6" column="53" lean-forward="true" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
-          <folding>
-            <element signature="e#2249#2250#0" expanded="true" />
-            <element signature="e#2278#2279#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="409">
+          <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Segment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="296" column="35" lean-forward="true" selection-start-line="296" selection-start-column="35" selection-end-line="296" selection-end-column="35" />
+        <state relative-caret-position="85">
+          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Trie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/TrieNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="51" column="1" lean-forward="false" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Road.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="158" column="13" lean-forward="true" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="296" column="8" lean-forward="false" selection-start-line="296" selection-start-column="8" selection-end-line="296" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#17773#17774#0" expanded="true" />
+            <element signature="e#17808#17809#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

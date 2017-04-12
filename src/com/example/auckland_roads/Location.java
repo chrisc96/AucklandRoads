@@ -24,11 +24,11 @@ import java.awt.Point;
  * system.
  */
 
-public class Location {
+class Location {
 
 	// the center of Auckland City according to Google Maps
-	public static final double CENTRE_LAT = -36.847622;
-	public static final double CENTRE_LON = 174.763444;
+	static final double CENTRE_LAT = -36.847622;
+	static final double CENTRE_LON = 174.763444;
 
 	// how many kilometers per degree.
 	private static final double SCALE_LAT = 111.0;
@@ -36,10 +36,11 @@ public class Location {
 
 	// fields are public for easy access, but they are final so that the
 	// location is immutable.
-	public final double x;
-	public final double y;
+	final double x;
 
-	public Location(double x, double y) {
+	final double y;
+
+	Location(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -53,7 +54,7 @@ public class Location {
 	 * create this Point, an origin location and the scale of the window are
 	 * required. Note the vertical direction is inverted
 	 */
-	public Point asPoint(Location origin, double scale) {
+	Point asPoint(Location origin, double scale) {
 		int u = (int) ((x - origin.x) * scale);
 		int v = (int) ((origin.y - y) * scale);
 		return new Point(u, v);
@@ -63,8 +64,8 @@ public class Location {
 	 * Create a new Location object from a given Point object, as well as the
 	 * origin and scale. This is effectively the opposite of the asPoint method.
 	 */
-	public static Location newFromPoint(Point point, Location origin,
-			double scale) {
+	static Location newFromPoint(Point point, Location origin,
+								 double scale) {
 		return new Location(point.x / scale + origin.x, origin.y - point.y
 				/ scale);
 	}
@@ -73,7 +74,7 @@ public class Location {
 	 * Create a new Location object from the given latitude and longitude, which
 	 * is the format used in the data files.
 	 */
-	public static Location newFromLatLon(double lat, double lon) {
+	static Location newFromLatLon(double lat, double lon) {
 		double y = (lat - CENTRE_LAT) * SCALE_LAT;
 		double x = (lon - CENTRE_LON)
 				* (SCALE_LAT * Math.cos((lat - CENTRE_LAT) * DEG_TO_RAD));
@@ -89,14 +90,14 @@ public class Location {
 	 * given dx and dy, ie. this returns a Location representing (x + dx, y +
 	 * dy).
 	 */
-	public Location moveBy(double dx, double dy) {
+	Location moveBy(double dx, double dy) {
 		return new Location(x + dx, y + dy);
 	}
 
 	/**
 	 * Return distance between this location and another
 	 */
-	public double distance(Location other) {
+	double distance(Location other) {
 		return Math.hypot(this.x - other.x, this.y - other.y);
 	}
 

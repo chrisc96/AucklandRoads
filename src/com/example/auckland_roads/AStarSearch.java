@@ -2,24 +2,23 @@ package com.example.auckland_roads;
 
 import java.util.PriorityQueue;
 
-public class AStarSearch {
-    private Node start, goal;
-    private PriorityQueue<AStarSearchNode> fringe = new PriorityQueue<>();
+class AStarSearch {
+    private final Node goal;
+    private final PriorityQueue<AStarSearchNode> fringe = new PriorityQueue<>();
 
-    private AStarSearchNode startNode;
+    private final AStarSearchNode startNode;
 
-    public AStarSearch(Node start, Node end) {
-        this.start = start;
+    AStarSearch(Node start, Node end) {
         this.goal = end;
-        this.start.visited = true;
-        this.start.estimate = this.start.getLocation().distance(this.goal.getLocation());
-        startNode = new AStarSearchNode(this.start, null, 0, this.start.estimate);
+        start.visited = true;
+        start.estimate = start.getLocation().distance(this.goal.getLocation());
+        startNode = new AStarSearchNode(start, null, 0, start.estimate);
     }
 
-    public Node search() {
+    Node search() {
         fringe.add(startNode);
 
-        AStarSearchNode priorityNode = null;
+        AStarSearchNode priorityNode;
         while (!fringe.isEmpty()) {
             priorityNode = fringe.poll();
 
@@ -35,6 +34,8 @@ public class AStarSearch {
                 Node neighbour = null;
                 if (priorityNode.currentNode.getNodeID() == segs.nodeID1.getNodeID()) neighbour = segs.nodeID2;
                 if (priorityNode.currentNode.getNodeID() == segs.nodeID2.getNodeID()) neighbour = segs.nodeID1;
+
+                assert neighbour != null;
                 if (!neighbour.visited) {
                     double costToNeighbour = priorityNode.costFromStart + segs.getLength();
                     double estimatedTotal = costToNeighbour + neighbour.getLocation().distance(goal.getLocation());

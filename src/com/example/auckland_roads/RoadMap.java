@@ -3,54 +3,51 @@ package com.example.auckland_roads;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.util.*;
 import java.util.List;
 
 public class RoadMap extends GUI {
 
-    private Double farLeft, farRight, farTop, farBot; // Used to set map boundaries
-
-    public static RoadMap map; // Object for this class to be accessed from others
+    static RoadMap map; // Object for this class to be accessed from others
 
     // Main data structures
-    public static List<Segment> segmentList = new ArrayList<>();
-    public static List<Polygon> polygonList = new ArrayList<>();
-    public static Map<Integer, Node> nodeMap = new HashMap<>();
-    public static Map<Integer, Road> roadMap = new HashMap<>();
-    public static List<Node> selectedNodes = new ArrayList<>();
+    private static List<Segment> segmentList = new ArrayList<>();
+    private static List<Polygon> polygonList = new ArrayList<>();
+    static Map<Integer, Node> nodeMap = new HashMap<>();
+    static Map<Integer, Road> roadMap = new HashMap<>();
+    private static final List<Node> selectedNodes = new ArrayList<>();
 
     // Searching by search bar
-    public static Trie trie = new Trie();
-    public static List<String> searchRoadNames = new ArrayList<>();
-    public static String currString;
-    List<String> smaller = new ArrayList<>();
+    static final Trie trie = new Trie();
+    private static List<String> searchRoadNames = new ArrayList<>();
+    private List<String> smaller = new ArrayList<>();
+    static String currString;
 
     // A* Path finding data structures/fields
-    Node closest = null; // For selected intersection/node
-    List<Node> nodesTravelled = new ArrayList<>();
-    List<Segment> segmentsTravelled = new ArrayList<>();
-
+    private Node closest = null; // For selected intersection/node
+    private final List<Node> nodesTravelled = new ArrayList<>();
+    private final List<Segment> segmentsTravelled = new ArrayList<>();
 
     // Articulation Points data structures/fields
-    ArticulationPts artPts = null;
-    public boolean artPtsToggle = false; // to toggle display on/off
+    private ArticulationPts artPts = null;
+    boolean artPtsToggle = false; // to toggle display on/off
 
     // Misc
-    JTextArea output = getTextOutputArea();
-    Graphics g;
-    boolean first_run = true;
+    private final JTextArea output = getTextOutputArea();
+    private Graphics g;
+    private boolean first_run = true;
 
     // Initial scale/origin so that custom scale can be set after redraw is run for first time
     // as onLoad (which sets origin/scale) is run after redraw which requires origin and scale
-    public Location origin = new Location(0,0);
-    public Double scale = 50.0;
-    public Double zoom = 0.0;
+    private Location origin = new Location(0,0);
+    private Double scale = 50.0;
+    private Double zoom = 0.0;
 
     // Used for zooming/panning with current mouse pos
     int mouseX, mouseY, mouseXStart, mouseYStart, mouseXEnd, mouseYEnd, xDif, yDif;
+
+
 
     @Override
     protected void redraw(Graphics g) {
@@ -99,8 +96,8 @@ public class RoadMap extends GUI {
                     } else {
                         smaller = searchRoadNames;
                     }
-                    for (int i = 0; i < smaller.size(); i++) {
-                        output.append(GUI.toTitleCase(smaller.get(i)) + "\n");
+                    for (String road : smaller) {
+                        output.append(GUI.toTitleCase(road) + "\n");
                     }
                 }
             }
@@ -138,8 +135,7 @@ public class RoadMap extends GUI {
         }
     }
 
-    @Override
-    protected void ArticulationSearch() {
+    private void ArticulationSearch() {
 
         // We need to do this because some of the islands off New Zealand are evidently disconnected
         // Thus we need to run our algorithm on these islands too. This checks whether all the nodes
@@ -149,7 +145,7 @@ public class RoadMap extends GUI {
             count = 0;
             for (Node node : nodeMap.values()) {
                 if (node.depth == Integer.MAX_VALUE) {
-                    artPts = new ArticulationPts(node, 0, null);
+                    artPts = new ArticulationPts(node);
                     artPts.findArtPts();
                     break;
                 }
@@ -158,6 +154,7 @@ public class RoadMap extends GUI {
                 }
             }
         }
+        System.out.println(artPts.getArtPts().size());
     }
 
     // Switches for GUI operability inc. buttons, mouse panning and zooming.
@@ -193,8 +190,7 @@ public class RoadMap extends GUI {
                 // Zooms from center
                 deltaMouseX = mouseX*1.3 - mouseX;
                 deltaMouseY = mouseY*1.3 - mouseY;
-                Location mouseZoomIn = Location.newFromPoint(new Point((int) deltaMouseX, (int) deltaMouseY), origin, scale);
-                this.origin = mouseZoomIn;
+                this.origin = Location.newFromPoint(new Point((int) deltaMouseX, (int) deltaMouseY), origin, scale);
 
                 redraw(g);
                 break;
@@ -204,8 +200,7 @@ public class RoadMap extends GUI {
 
                 deltaMouseX = mouseX/1.3 - mouseX;
                 deltaMouseY = mouseY/1.3 - mouseY;
-                Location mouseZoomOut = Location.newFromPoint(new Point((int) deltaMouseX, (int) deltaMouseY), origin, scale);
-                this.origin = mouseZoomOut;
+                this.origin = Location.newFromPoint(new Point((int) deltaMouseX, (int) deltaMouseY), origin, scale);
                 redraw(g);
                 break;
             case ZOOM_IN_BTN:
@@ -215,8 +210,7 @@ public class RoadMap extends GUI {
                 // Used for zooming using mouse wheel. Otherwise using the button zooms from center
                 posCentreX = (getDrawingAreaDimension().getWidth()/2)*1.3 - (getDrawingAreaDimension().getWidth()/2);
                 posCentreY = (getDrawingAreaDimension().getHeight()/2)*1.3 - (getDrawingAreaDimension().getHeight()/2);
-                Location btnZoomIn = Location.newFromPoint(new Point((int) posCentreX, (int) posCentreY), origin, scale);
-                this.origin = btnZoomIn;
+                this.origin = Location.newFromPoint(new Point((int) posCentreX, (int) posCentreY), origin, scale);
 
                 redraw(g);
                 break;
@@ -226,8 +220,7 @@ public class RoadMap extends GUI {
 
                 posCentreX = (getDrawingAreaDimension().getWidth()/2)/1.3 - (getDrawingAreaDimension().getWidth()/2);
                 posCentreY = (getDrawingAreaDimension().getHeight()/2)/1.3 - (getDrawingAreaDimension().getHeight()/2);
-                Location btnZoomOut = Location.newFromPoint(new Point((int) posCentreX, (int) posCentreY), origin, scale);
-                this.origin = btnZoomOut;
+                this.origin = Location.newFromPoint(new Point((int) posCentreX, (int) posCentreY), origin, scale);
                 redraw(g);
                 break;
         }
@@ -236,7 +229,7 @@ public class RoadMap extends GUI {
 
     // Drawing methods (segments, nodes)
 
-    public void drawNodes(Graphics g, Location origin, double scale) {
+    private void drawNodes(Graphics g, Location origin, double scale) {
         for (Node node : nodeMap.values()) {
             Point pt = node.getLocation().asPoint(origin,scale);
             g.setColor(node.col);
@@ -263,20 +256,19 @@ public class RoadMap extends GUI {
         }
     }
 
-    public void drawSegments(Graphics g, Location origin, double scale) {
+    private void drawSegments(Graphics g, Location origin, double scale) {
         Graphics2D g2 = (Graphics2D) g;
-        for (int i = 0; i < segmentList.size(); i++) {
-            int len = segmentList.get(i).getCoords().size();
-            Road rd = roadMap.get(segmentList.get(i).roadID);
+        for (Segment aSegmentList : segmentList) {
+            int len = aSegmentList.getCoords().size();
+            Road rd = roadMap.get(aSegmentList.roadID);
             g.setColor(rd.getCol());
             g2.setStroke(rd.getBs());
             for (int j = 1; j < len; j++) {
-                Point p1 = segmentList.get(i).getCoords().get(j - 1).asPoint(origin, scale);
-                Point p2 = segmentList.get(i).getCoords().get(j).asPoint(origin, scale);
+                Point p1 = aSegmentList.getCoords().get(j - 1).asPoint(origin, scale);
+                Point p2 = aSegmentList.getCoords().get(j).asPoint(origin, scale);
                 if (rd.getRoadClass() != 0) {
                     g.drawLine(p1.x, p1.y, p2.x, p2.y);
-                }
-                else {
+                } else {
                     if (zoom >= 1) {
                         g.drawLine(p1.x, p1.y, p2.x, p2.y);
                     }
@@ -285,16 +277,16 @@ public class RoadMap extends GUI {
         }
         g.setColor(Color.black);
         if (smaller != null) {
-            for (int i = 0; i < smaller.size(); i++) {
-                List<Road> roads = trie.getRoads(smaller.get(i));   // Gets all of the roads that match the string
-                                                                    // in smaller list as result of searching
-                for (int j = 0; j < roads.size(); j++) {
-                    List<Segment> segs = roads.get(j).getSegments();
-                    for (int k = 0; k < segs.size(); k++) {
-                        List<Location> coords = segs.get(k).getCoords();
+            for (String aSmaller : smaller) {
+                List<Road> roads = trie.getRoads(aSmaller);   // Gets all of the roads that match the string
+                // in smaller list as result of searching
+                for (Road road : roads) {
+                    List<Segment> segs = road.getSegments();
+                    for (Segment seg : segs) {
+                        List<Location> coords = seg.getCoords();
                         for (int l = 1; l < coords.size(); l++) {
-                            Point p1 = segs.get(k).getCoords().get(l-1).asPoint(origin,scale);
-                            Point p2 = segs.get(k).getCoords().get(l).asPoint(origin,scale);
+                            Point p1 = seg.getCoords().get(l - 1).asPoint(origin, scale);
+                            Point p2 = seg.getCoords().get(l).asPoint(origin, scale);
                             g.drawLine(p1.x, p1.y, p2.x, p2.y);
                         }
                     }
@@ -302,30 +294,30 @@ public class RoadMap extends GUI {
             }
         }
         g.setColor(Color.RED);
-        for (int i = 0; i < segmentsTravelled.size(); i++) {
-            List<Location> coords = segmentsTravelled.get(i).getCoords();
+        for (Segment aSegmentsTravelled : segmentsTravelled) {
+            List<Location> coords = aSegmentsTravelled.getCoords();
             for (int j = 1; j < coords.size(); j++) {
-                Point p1 = segmentsTravelled.get(i).getCoords().get(j-1).asPoint(origin,scale);
-                Point p2 = segmentsTravelled.get(i).getCoords().get(j).asPoint(origin,scale);
+                Point p1 = aSegmentsTravelled.getCoords().get(j - 1).asPoint(origin, scale);
+                Point p2 = aSegmentsTravelled.getCoords().get(j).asPoint(origin, scale);
                 g.drawLine(p1.x, p1.y, p2.x, p2.y);
             }
         }
     }
 
-    public void drawPolygons(Graphics g, Location origin, double scale) {
+    private void drawPolygons(Graphics g, Location origin, double scale) {
         if (polygonList != null) {
             int[] xCoords;
             int[] yCoords;
-            for (int i = 0; i < polygonList.size(); i++) {
-                xCoords = new int[polygonList.get(i).getCoords().size()];
-                yCoords = new int[polygonList.get(i).getCoords().size()];
-                if (polygonList.get(i).getColor() != null) {
-                    for (int j = 0; j < polygonList.get(i).getCoords().size(); j++) {
-                        Point p1 = polygonList.get(i).getCoords().get(j).asPoint(origin, scale);
+            for (Polygon aPolygonList : polygonList) {
+                xCoords = new int[aPolygonList.getCoords().size()];
+                yCoords = new int[aPolygonList.getCoords().size()];
+                if (aPolygonList.getColor() != null) {
+                    for (int j = 0; j < aPolygonList.getCoords().size(); j++) {
+                        Point p1 = aPolygonList.getCoords().get(j).asPoint(origin, scale);
                         xCoords[j] = p1.x;
                         yCoords[j] = p1.y;
                     }
-                    g.setColor(polygonList.get(i).getColor());
+                    g.setColor(aPolygonList.getColor());
                     g.fillPolygon(xCoords, yCoords, xCoords.length);
                 }
             }
@@ -393,7 +385,7 @@ public class RoadMap extends GUI {
         output.append("\nGoal reached. Total Distance: \t\t" + (double) Math.round(totalDistance*1000) / 1000 + "km");
     }
 
-    public void drawNodeInfo() {
+    private void drawNodeInfo() {
         output.setText( "Intersection ID: " + closest.getNodeID() + "\n");
 
         List<Segment> segsIn = closest.getSegmentIn();
@@ -418,7 +410,7 @@ public class RoadMap extends GUI {
         }
     }
 
-    public void instructions() {
+    private void instructions() {
         output.setText(
                 "Welcome to my Auckland Maps program designed by Chris Connolly,\n\n" +
                         "CONTROLS:\n" +
@@ -447,7 +439,7 @@ public class RoadMap extends GUI {
         startMethod();
     }
 
-    public void startMethod() {
+    private void startMethod() {
         Dimension d = this.getDrawingAreaDimension();
         double windowSize = Math.min(d.getHeight(), d.getWidth());
 
@@ -457,11 +449,11 @@ public class RoadMap extends GUI {
         origin = Location.newFromLatLon(Location.CENTRE_LAT, Location.CENTRE_LON);  // farLeft, farTop
     }
 
-    public void setExtremities() {
-        farLeft = Double.POSITIVE_INFINITY;
-        farRight = Double.NEGATIVE_INFINITY;
-        farBot = Double.POSITIVE_INFINITY;
-        farTop = Double.NEGATIVE_INFINITY;
+    private void setExtremities() {
+        Double farLeft = Double.POSITIVE_INFINITY;
+        Double farRight = Double.NEGATIVE_INFINITY;
+        Double farBot = Double.POSITIVE_INFINITY;
+        Double farTop = Double.NEGATIVE_INFINITY;
 
         for (Node node : nodeMap.values()) {
             if (node.getLocation().x < farLeft) farLeft = node.getLocation().x;

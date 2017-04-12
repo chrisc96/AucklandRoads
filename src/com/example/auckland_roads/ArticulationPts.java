@@ -3,33 +3,33 @@ package com.example.auckland_roads;
 
 import java.util.*;
 
-public class ArticulationPts {
-    public static Set<Node> artPts = new HashSet<>();
-    public Stack<ArticulationPtsTuple> stack = new Stack<>();
+class ArticulationPts {
+    private static final Set<Node> artPts = new HashSet<>();
+    private final Stack<ArticulationPtsTuple> stack = new Stack<>();
 
-    int numSubTrees = 0;
+    private int numSubTrees = 0;
 
-    Node root;
-    ArticulationPtsTuple rootTuple;
+    private final Node root;
+    private final ArticulationPtsTuple rootTuple;
 
-    public ArticulationPts(Node firstNode, int depth, ArticulationPtsTuple parent) {
+    ArticulationPts(Node firstNode) {
         numSubTrees = 0;
 
         firstNode.depth = 0;
         this.root = firstNode;
-        rootTuple = new ArticulationPtsTuple(root, depth, parent);
+        rootTuple = new ArticulationPtsTuple(root, 0, null);
     }
 
-    public void findArtPts() {
+    void findArtPts() {
         for (Node neighbour : root.neighbours) {
-            iterArtPts(neighbour, 1, rootTuple);
+            iterArtPts(neighbour, rootTuple);
             numSubTrees++;
         }
         if (numSubTrees > 1) artPts.add(root);
     }
 
-    private void iterArtPts(Node currNode, int depth, ArticulationPtsTuple rootTuple) {
-        stack.push(new ArticulationPtsTuple(currNode, depth, rootTuple));
+    private void iterArtPts(Node currNode, ArticulationPtsTuple rootTuple) {
+        stack.push(new ArticulationPtsTuple(currNode, 1, rootTuple));
 
         while (!stack.isEmpty()) {
             ArticulationPtsTuple tuple = stack.peek();
@@ -64,7 +64,7 @@ public class ArticulationPts {
         }
     }
 
-    public Set<Node> getArtPts() {
+    Set<Node> getArtPts() {
         return artPts;
     }
 }

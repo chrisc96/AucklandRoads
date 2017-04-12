@@ -3,7 +3,6 @@ package com.example.auckland_roads;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.Arrays;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -30,7 +29,7 @@ public abstract class GUI {
 	 */
 	public enum Move {
 		NORTH, SOUTH, EAST, WEST, ZOOM_IN, ZOOM_OUT, MOUSE_DRAG, ZOOM_IN_BTN, ZOOM_OUT_BTN
-	};
+	}
 
 	// these are the methods you need to implement.i
 
@@ -81,7 +80,7 @@ public abstract class GUI {
 	/**
 	 * @return the JTextArea at the bottom of the screen for output.
 	 */
-	public JTextArea getTextOutputArea() {
+	JTextArea getTextOutputArea() {
 		return textOutputArea;
 	}
 
@@ -105,7 +104,7 @@ public abstract class GUI {
 	 * whenever a button is pressed or the search box is updated, so you
 	 * probably won't need to call this.
 	 */
-	public void redraw() {
+	private void redraw() {
 		frame.repaint();
 	}
 
@@ -115,7 +114,7 @@ public abstract class GUI {
 	// assignment up to and including completion.
 	// --------------------------------------------------------------------
 
-	public static boolean mouseDragged = false;
+	private static boolean mouseDragged = false;
 	private static final boolean UPDATE_ON_EVERY_CHARACTER = true;
 
 	private static final int DEFAULT_DRAWING_HEIGHT = 400;
@@ -142,20 +141,19 @@ public abstract class GUI {
 
 	private JFrame frame;
 
-	private JPanel controls;
-	public static JComponent drawing; // we customise this to make it a drawing pane.
+	private static JComponent drawing; // we customise this to make it a drawing pane.
 	private JTextArea textOutputArea;
 
-	public static JTextField search;
+	static JTextField search;
 	private JFileChooser fileChooser;
 
-	public GUI() {
+	GUI() {
 		initialise();
 	}
 
 	// Had to write my own formatter to convert strings for road names
 	// into title case - 'this is an example' becomes 'This Is An Example'
-	public static String toTitleCase(String input) {
+	static String toTitleCase(String input) {
 		StringBuilder titleCase = new StringBuilder();
 		boolean nextTitleCase = true;
 
@@ -185,131 +183,110 @@ public abstract class GUI {
 		// with swing. the quit button isn't really necessary, as you can just
 		// press the frame's close button, but it serves as a nice example.
 		JButton quit = new JButton("Quit");
-		quit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				System.exit(0); // cleanly end the program.
-			}
-		});
+		quit.addActionListener(ev -> {
+            System.exit(0); // cleanly end the program.
+        });
 
 		fileChooser = new JFileChooser();
 		JButton load = new JButton("Load");
-		load.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				File nodes = null, roads = null, segments = null, polygons = null;
+		load.addActionListener(ev -> {
+            File nodes = null, roads = null, segments = null, polygons = null;
 
-				// set up the file chooser
-				fileChooser.setCurrentDirectory(new File("."));
-				fileChooser.setDialogTitle("Select input directory");
-				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            // set up the file chooser
+            fileChooser.setCurrentDirectory(new File("."));
+            fileChooser.setDialogTitle("Select input directory");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-				// run the file chooser and check the user didn't hit cancel
-				if (fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
-					// get the files in the selected directory and match them to
-					// the files we need.
-					File directory = fileChooser.getSelectedFile();
-					File[] files = directory.listFiles();
+            // run the file chooser and check the user didn't hit cancel
+            if (fileChooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+                // get the files in the selected directory and match them to
+                // the files we need.
+                File directory = fileChooser.getSelectedFile();
+                File[] files = directory.listFiles();
 
-					for (File f : files) {
-						if (f.getName().equals(NODES_FILENAME)) {
-							nodes = f;
-						} else if (f.getName().equals(ROADS_FILENAME)) {
-							roads = f;
-						} else if (f.getName().equals(SEGS_FILENAME)) {
-							segments = f;
-						} else if (f.getName().equals(POLYS_FILENAME)) {
-							polygons = f;
-						}
-					}
+                assert files != null;
+                for (File f : files) {
+                    if (f.getName().equals(NODES_FILENAME)) {
+                        nodes = f;
+                    } else if (f.getName().equals(ROADS_FILENAME)) {
+                        roads = f;
+                    } else if (f.getName().equals(SEGS_FILENAME)) {
+                        segments = f;
+                    } else if (f.getName().equals(POLYS_FILENAME)) {
+                        polygons = f;
+                    }
+                }
 
-					// check none of the files are missing, and call the load
-					// method in your code.
-					if (nodes == null || roads == null || segments == null) {
-						JOptionPane.showMessageDialog(frame,
-								"Directory does not contain correct files",
-								"Error", JOptionPane.ERROR_MESSAGE);
-					} else {
-						onLoad(nodes, roads, segments, polygons);
-						redraw();
-					}
-				}
-			}
-		});
+                // check none of the files are missing, and call the load
+                // method in your code.
+                if (nodes == null || roads == null || segments == null) {
+                    JOptionPane.showMessageDialog(frame,
+                            "Directory does not contain correct files",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    onLoad(nodes, roads, segments, polygons);
+                    redraw();
+                }
+            }
+        });
 
 		JButton west = new JButton("\u2190");
-		west.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				onMove(Move.WEST);
-				redraw();
-			}
-		});
+		west.addActionListener(ev -> {
+            onMove(Move.WEST);
+            redraw();
+        });
 
 		JButton east = new JButton("\u2192");
-		east.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				onMove(Move.EAST);
-				redraw();
-			}
-		});
+		east.addActionListener(ev -> {
+            onMove(Move.EAST);
+            redraw();
+        });
 
 		JButton north = new JButton("\u2191");
-		north.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				onMove(Move.NORTH);
-				redraw();
-			}
-		});
+		north.addActionListener(ev -> {
+            onMove(Move.NORTH);
+            redraw();
+        });
 
 		JButton south = new JButton("\u2193");
-		south.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				onMove(Move.SOUTH);
-				redraw();
-			}
-		});
+		south.addActionListener(ev -> {
+            onMove(Move.SOUTH);
+            redraw();
+        });
 
 		JButton in = new JButton("+");
-		in.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				onMove(Move.ZOOM_IN_BTN);
-				redraw();
-			}
-		});
+		in.addActionListener(ev -> {
+            onMove(Move.ZOOM_IN_BTN);
+            redraw();
+        });
 
 		JButton out = new JButton("\u2012");
-		out.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				onMove(Move.ZOOM_OUT_BTN);
-				redraw();
-			}
-		});
+		out.addActionListener(ev -> {
+            onMove(Move.ZOOM_OUT_BTN);
+            redraw();
+        });
 
 		JButton AStarSearch = new JButton("A* Search");
-		AStarSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				AStarSearch();
-				redraw();
-			}
-		});
+		AStarSearch.addActionListener(ev -> {
+            AStarSearch();
+            redraw();
+        });
 
 		JButton ArtPts = new JButton("Articulation Points");
-		ArtPts.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
-				map.artPtsToggle = !map.artPtsToggle;
-				redraw();
-			}
-		});
+		ArtPts.addActionListener(ev -> {
+            map.artPtsToggle = !map.artPtsToggle;
+            redraw();
+        });
 
 		// next, make the search box at the top-right. we manually fix
 		// it's size, and add an action listener to call your code when
 		// the user presses enter.
 		search = new JTextField(SEARCH_COLS);
 		search.setMaximumSize(new Dimension(0, 25));
-		search.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				onSearch();
-				redraw();
-			}
-		});
+		search.addActionListener(e -> {
+            onSearch();
+            redraw();
+        });
 
 		if (UPDATE_ON_EVERY_CHARACTER) {
 			search.addKeyListener(new KeyAdapter() {
@@ -336,7 +313,7 @@ public abstract class GUI {
 		// GridLayout is self-describing. BorderLayout puts a single component
 		// on the north, south, east, and west sides of the outer component, as
 		// well as one in the centre. google for more information.
-		controls = new JPanel();
+		JPanel controls = new JPanel();
 		controls.setLayout(new BoxLayout(controls, BoxLayout.LINE_AXIS));
 
 		// make an empty border so the components aren't right up against the
@@ -437,20 +414,18 @@ public abstract class GUI {
 			}
 		});
 
-		drawing.addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent e) {
-				// Source: https://docs.oracle.com/javase/tutorial/uiswing/events/mousewheellistener.html
-				int notches = e.getWheelRotation();
-				if (notches < 0) {
-					onMove(Move.ZOOM_IN);
-					redraw();
-				}
-				else {
-					onMove(Move.ZOOM_OUT);
-					redraw();
-				}
-			}
-		});
+		drawing.addMouseWheelListener(e -> {
+            // Source: https://docs.oracle.com/javase/tutorial/uiswing/events/mousewheellistener.html
+            int notches = e.getWheelRotation();
+            if (notches < 0) {
+                onMove(Move.ZOOM_IN);
+                redraw();
+            }
+            else {
+                onMove(Move.ZOOM_OUT);
+                redraw();
+            }
+        });
 
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
@@ -537,7 +512,6 @@ public abstract class GUI {
 	}
 
 	protected abstract void AStarSearch();
-	protected abstract void ArticulationSearch();
 }
 
 // code for COMP261 assignments

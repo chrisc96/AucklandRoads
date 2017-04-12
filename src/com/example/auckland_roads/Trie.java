@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Trie {
 
-    private TrieNode root;
+    private final TrieNode root;
 
     public Trie() {
         root = new TrieNode();
@@ -25,7 +25,7 @@ public class Trie {
             }
         }
         // The cursor after running the for loop is at the end of the word,
-        cursor.setCompletesAWord(true);
+        cursor.setCompletesAWord();
         cursor.addRoad(road);
     }
 
@@ -39,7 +39,7 @@ public class Trie {
         return cursor.isCompletesAWord();
     }
 
-    public List<Road> getRoads(String word) {
+    List<Road> getRoads(String word) {
         TrieNode cursor = root;
         for (int i = 0; i < word.length(); i++) {
             char character = word.charAt(i);
@@ -50,7 +50,7 @@ public class Trie {
     }
 
     public List<String> getAll(String prefix) {
-        if (prefix.length() == 0 || prefix == null) return Collections.emptyList();
+        if (prefix.length() == 0) return Collections.emptyList();
         TrieNode cursor = root;
         char lastChar = prefix.charAt(prefix.length()-1);
         List<String> roadNames = new ArrayList<>();
@@ -68,7 +68,7 @@ public class Trie {
         return null;
     }
 
-    public List<String> DFSHelper(TrieNode cursor, String prefix, List<String> roadNames) {
+    private List<String> DFSHelper(TrieNode cursor, String prefix, List<String> roadNames) {
         if (cursor.isCompletesAWord()) {
             roadNames.add(prefix);
         }

@@ -4,31 +4,29 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.auckland_roads.RoadMap.roadMap;
-
-public class Polygon {
+class Polygon {
 
     private String type;
-    private List<Location> coords = new ArrayList<>();
+    private final List<Location> coords = new ArrayList<>();
     private Color color;
 
-    public Color getColor() {
+    Color getColor() {
         return color;
     }
 
-    public List<Location> getCoords() {
+    List<Location> getCoords() {
         return coords;
     }
 
-    public void setType(String type) {
+    void setType(String type) {
         this.type = type;
     }
 
-    public void addCoords(Location loc) {
+    void addCoords(Location loc) {
         this.coords.add(loc);
     }
 
-    public void setColor(Color col) {
+    void setColor(Color col) {
         this.color = col;
     }
 
