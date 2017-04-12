@@ -29,33 +29,34 @@ public class ArticulationPts {
 
     private void iterArtPts(Node currNode, int depth, ArticulationPtsTuple rootTuple) {
         stack.push(new ArticulationPtsTuple(currNode, depth, rootTuple));
+
         while (!stack.isEmpty()) {
             ArticulationPtsTuple tuple = stack.peek();
-            if (tuple.node.depth == Integer.MAX_VALUE) {
+            if (tuple.children == null) {
                 tuple.node.depth = tuple.depth;
-                tuple.node.reachBack = tuple.depth;
-                tuple.node.unvisitedNeighbours = new ArrayDeque<>();
+                tuple.reachBack = tuple.depth;
+                tuple.children = new ArrayDeque<>();
                 for (Node neighbour : tuple.node.neighbours) {
-                    if (neighbour != rootTuple.node) {
-                        tuple.node.unvisitedNeighbours.add(neighbour);
+                    if (neighbour != tuple.fromNode.node) {
+                        tuple.children.add(neighbour);
                     }
                 }
             }
-            else if (!tuple.node.unvisitedNeighbours.isEmpty()) {
-                Node child = tuple.node.unvisitedNeighbours.poll();
+            else if (!tuple.children.isEmpty()) {
+                Node child = tuple.children.poll();
                 if (child.depth < Integer.MAX_VALUE) {
-                    tuple.node.reachBack = Math.min(tuple.node.reachBack, child.depth);
+                    tuple.reachBack = Math.min(tuple.reachBack, child.depth);
                 }
                 else {
-                    stack.push(new ArticulationPtsTuple(child, depth + 1, tuple));
+                    stack.push(new ArticulationPtsTuple(child, tuple.node.depth + 1, tuple));
                 }
             }
             else {
                 if (tuple.node != currNode) {
-                    if (tuple.node.reachBack >= tuple.fromNode.depth) {
+                    if (tuple.reachBack >= tuple.fromNode.depth) {
                         artPts.add(tuple.fromNode.node);
                     }
-                    tuple.fromNode.reachBack = Math.min(tuple.fromNode.reachBack, tuple.node.reachBack);
+                    tuple.fromNode.reachBack = Math.min(tuple.fromNode.reachBack, tuple.reachBack);
                 }
                 stack.pop();
             }

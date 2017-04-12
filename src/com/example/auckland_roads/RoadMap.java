@@ -33,7 +33,7 @@ public class RoadMap extends GUI {
     List<Node> nodesTravelled = new ArrayList<>();
     List<Segment> segmentsTravelled = new ArrayList<>();
 
-    HashSet<Node> artPts;
+    HashSet<Node> artPts = new HashSet<>();
 
     // Misc
     JTextArea output = getTextOutputArea();
@@ -143,7 +143,7 @@ public class RoadMap extends GUI {
         Node randomRoot = nodeMap.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
 
         ArticulationPts artpt = new ArticulationPts(randomRoot,0,null);
-        artPts = new HashSet<>(artpt.findArtPts());
+        artPts = (HashSet<Node>) artpt.findArtPts();
         System.out.println(artPts.size());
     }
 
@@ -241,11 +241,11 @@ public class RoadMap extends GUI {
             g.setColor(Color.RED);
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
         }
-//        for (Node n : artPts) {
-//            Point pt = n.getLocation().asPoint(origin, scale);
-//            g.setColor(Color.GREEN);
-//            g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
-//        }
+        for (Node n : artPts) {
+            Point pt = n.getLocation().asPoint(origin, scale);
+            g.setColor(Color.GREEN);
+            g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
+        }
     }
 
     public void drawSegments(Graphics g, Location origin, double scale) {
