@@ -33,7 +33,10 @@ public class RoadMap extends GUI {
     List<Node> nodesTravelled = new ArrayList<>();
     List<Segment> segmentsTravelled = new ArrayList<>();
 
-    HashSet<Node> artPts = new HashSet<>();
+
+    // Articulation Points data structures/fields
+    ArticulationPts artPts = null;
+    public boolean artPtsToggle = false; // to toggle display on/off
 
     // Misc
     JTextArea output = getTextOutputArea();
@@ -137,14 +140,24 @@ public class RoadMap extends GUI {
 
     @Override
     protected void ArticulationSearch() {
-        // Select random key from nodeMap
-        List<Integer> keysAsArray = new ArrayList<>(nodeMap.keySet());
-        Random r = new Random();
-        Node randomRoot = nodeMap.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
 
-        ArticulationPts artpt = new ArticulationPts(randomRoot,0,null);
-        artPts = (HashSet<Node>) artpt.findArtPts();
-        System.out.println(artPts.size());
+        // We need to do this because some of the islands off New Zealand are evidently disconnected
+        // Thus we need to run our algorithm on these islands too. This checks whether all the nodes
+        // Have been processed, if they haven't, run the search again with this node as the root
+        int count = 0;
+        while (count != nodeMap.size()) {
+            count = 0;
+            for (Node node : nodeMap.values()) {
+                if (node.depth == Integer.MAX_VALUE) {
+                    artPts = new ArticulationPts(node, 0, null);
+                    artPts.findArtPts();
+                    break;
+                }
+                else {
+                    count++;
+                }
+            }
+        }
     }
 
     // Switches for GUI operability inc. buttons, mouse panning and zooming.
@@ -241,10 +254,12 @@ public class RoadMap extends GUI {
             g.setColor(Color.RED);
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
         }
-        for (Node n : artPts) {
-            Point pt = n.getLocation().asPoint(origin, scale);
-            g.setColor(Color.GREEN);
-            g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
+        if (artPtsToggle) {
+            for (Node n : artPts.getArtPts()) {
+                Point pt = n.getLocation().asPoint(origin, scale);
+                g.setColor(Color.GREEN);
+                g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+            }
         }
     }
 
@@ -339,11 +354,6 @@ public class RoadMap extends GUI {
         selectedNodes.clear();
     }
 
-    private void clearAStar() {
-        segmentsTravelled.clear();
-        nodesTravelled.clear();
-    }
-
     // Displaying information/text
 
     private void outputTraversedInfo() {
@@ -432,6 +442,8 @@ public class RoadMap extends GUI {
         if (polygons != null) {
             polygonList = dl.parsePoly(polygons);
         }
+
+        ArticulationSearch(); // Calculates Articulation Points on load, button toggles their display
         startMethod();
     }
 

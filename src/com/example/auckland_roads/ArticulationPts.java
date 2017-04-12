@@ -4,7 +4,7 @@ package com.example.auckland_roads;
 import java.util.*;
 
 public class ArticulationPts {
-    public Set<Node> artPts = new HashSet<>();
+    public static Set<Node> artPts = new HashSet<>();
     public Stack<ArticulationPtsTuple> stack = new Stack<>();
 
     int numSubTrees = 0;
@@ -13,18 +13,19 @@ public class ArticulationPts {
     ArticulationPtsTuple rootTuple;
 
     public ArticulationPts(Node firstNode, int depth, ArticulationPtsTuple parent) {
+        numSubTrees = 0;
+
         firstNode.depth = 0;
         this.root = firstNode;
         rootTuple = new ArticulationPtsTuple(root, depth, parent);
     }
 
-    public Set<Node> findArtPts() {
+    public void findArtPts() {
         for (Node neighbour : root.neighbours) {
             iterArtPts(neighbour, 1, rootTuple);
             numSubTrees++;
         }
         if (numSubTrees > 1) artPts.add(root);
-        return artPts;
     }
 
     private void iterArtPts(Node currNode, int depth, ArticulationPtsTuple rootTuple) {
@@ -61,5 +62,9 @@ public class ArticulationPts {
                 stack.pop();
             }
         }
+    }
+
+    public Set<Node> getArtPts() {
+        return artPts;
     }
 }

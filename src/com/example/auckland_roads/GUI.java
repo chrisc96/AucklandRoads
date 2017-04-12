@@ -294,7 +294,7 @@ public abstract class GUI {
 		JButton ArtPts = new JButton("Articulation Points");
 		ArtPts.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
-				ArticulationSearch();
+				map.artPtsToggle = !map.artPtsToggle;
 				redraw();
 			}
 		});
