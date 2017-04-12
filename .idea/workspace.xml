@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fce053b5-1c93-460f-9d8c-2616b0933139" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap$1.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/RoadMap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$10.class" afterPath="$PROJECT_DIR$/out/production/AucklandRoads/com/example/auckland_roads/GUI$10.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/ArticulationPts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java" afterPath="$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java" />
     </list>
     <ignored path="AucklandRoads.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +30,8 @@
       <file leaf-file-name="RoadMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="155" column="22" lean-forward="true" selection-start-line="155" selection-start-column="22" selection-end-line="155" selection-end-column="22" />
+            <state relative-caret-position="433">
+              <caret line="158" column="13" lean-forward="true" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -958,7 +954,7 @@
       <workItem from="1491797947569" duration="151000" />
       <workItem from="1491815623222" duration="9503000" />
       <workItem from="1491869961232" duration="23891000" />
-      <workItem from="1491992774657" duration="5384000" />
+      <workItem from="1491992774657" duration="6126000" />
     </task>
     <task id="LOCAL-00001" summary="Added A* path output and highlighting">
       <created>1491830449266</created>
@@ -995,7 +991,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491999821174</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed Articulation Points. Made button toggle their display">
+      <created>1492002292657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1492002292657</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1031,7 +1034,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247693000" />
+    <option name="totallyTimeSpent" value="248435000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1129,7 +1132,8 @@
     <MESSAGE value="Begun Articulation  Points" />
     <MESSAGE value="Articulation Points implemented, algorithm must be wrong as incorrect amount of articulation points being printed" />
     <MESSAGE value="Articulation Points Working 99%. Islands causing issues because they are always disconnected from graph." />
-    <option name="LAST_COMMIT_MESSAGE" value="Articulation Points Working 99%. Islands causing issues because they are always disconnected from graph." />
+    <MESSAGE value="Fixed Articulation Points. Made button toggle their display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Articulation Points. Made button toggle their display" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1582,8 +1586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/auckland_roads/RoadMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="155" column="22" lean-forward="true" selection-start-line="155" selection-start-column="22" selection-end-line="155" selection-end-column="22" />
+        <state relative-caret-position="433">
+          <caret line="158" column="13" lean-forward="true" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
           <folding />
         </state>
       </provider>
