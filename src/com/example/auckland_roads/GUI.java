@@ -286,7 +286,15 @@ public abstract class GUI {
 		JButton AStarSearch = new JButton("A* Search");
 		AStarSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
-				articulationSearch();
+				AStarSearch();
+				redraw();
+			}
+		});
+
+		JButton ArtPts = new JButton("Articulation Points");
+		ArtPts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				ArticulationSearch();
 				redraw();
 			}
 		});
@@ -357,10 +365,17 @@ public abstract class GUI {
 		navigation.add(west);
 		navigation.add(south);
 		navigation.add(east);
+
+		JPanel SearchButtons = new JPanel();
+		SearchButtons.setMaximumSize(new Dimension(150,60));
+		SearchButtons.setLayout(new GridLayout(2, 1));
+		SearchButtons.add(AStarSearch);
+		SearchButtons.add(ArtPts);
+
 		controls.add(navigation);
 		controls.add(Box.createRigidArea(new Dimension(15, 0)));
 
-		controls.add(AStarSearch);
+		controls.add(SearchButtons);
 		// glue is another invisible component that grows to take up all the
 		// space it can on resize.
 		controls.add(Box.createHorizontalGlue());
@@ -521,7 +536,8 @@ public abstract class GUI {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
-	protected abstract void articulationSearch();
+	protected abstract void AStarSearch();
+	protected abstract void ArticulationSearch();
 }
 
 // code for COMP261 assignments

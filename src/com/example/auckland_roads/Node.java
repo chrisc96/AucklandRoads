@@ -1,9 +1,7 @@
 package com.example.auckland_roads;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static com.example.auckland_roads.RoadMap.map;
 
@@ -29,8 +27,10 @@ public class Node {
     private ArrayList<Segment> segmentIn = new ArrayList<>();
 
     // Articulation points Fields:
-    public int depth = Integer.MAX_VALUE;
     public ArrayList<Node> neighbours = new ArrayList<>();
+    public Queue<Node> unvisitedNeighbours;
+    public int depth = Integer.MAX_VALUE;
+    public int reachBack;
 
     public Node(int nodeID, Double lat, Double lon, Color col) {
         this.nodeID = nodeID;

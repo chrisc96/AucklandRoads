@@ -33,6 +33,8 @@ public class RoadMap extends GUI {
     List<Node> nodesTravelled = new ArrayList<>();
     List<Segment> segmentsTravelled = new ArrayList<>();
 
+    HashSet<Node> artPts;
+
     // Misc
     JTextArea output = getTextOutputArea();
     Graphics g;
@@ -110,7 +112,7 @@ public class RoadMap extends GUI {
     }
 
     @Override
-    protected void articulationSearch() {
+    protected void AStarSearch() {
         if (selectedNodes.size() == 2) {
             AStarSearch route = new AStarSearch(selectedNodes.get(0), selectedNodes.get(1));
             Node endNode = route.search();
@@ -131,6 +133,18 @@ public class RoadMap extends GUI {
             selectedNodes.clear();
             outputTraversedInfo();
         }
+    }
+
+    @Override
+    protected void ArticulationSearch() {
+        // Select random key from nodeMap
+        List<Integer> keysAsArray = new ArrayList<>(nodeMap.keySet());
+        Random r = new Random();
+        Node randomRoot = nodeMap.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
+
+        ArticulationPts artpt = new ArticulationPts(randomRoot,0,null);
+        artPts = new HashSet<>(artpt.findArtPts());
+        System.out.println(artPts.size());
     }
 
     // Switches for GUI operability inc. buttons, mouse panning and zooming.
@@ -227,7 +241,11 @@ public class RoadMap extends GUI {
             g.setColor(Color.RED);
             g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
         }
-
+//        for (Node n : artPts) {
+//            Point pt = n.getLocation().asPoint(origin, scale);
+//            g.setColor(Color.GREEN);
+//            g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
+//        }
     }
 
     public void drawSegments(Graphics g, Location origin, double scale) {

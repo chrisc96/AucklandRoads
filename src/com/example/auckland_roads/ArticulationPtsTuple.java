@@ -1,18 +1,20 @@
 package com.example.auckland_roads;
 
+import java.util.Queue;
+
 public class ArticulationPtsTuple {
 
     // Constructor fields
-    private Node currNode;
-    private int depth;
-    private Node fromNode;
+    public Node node;
+    public ArticulationPtsTuple fromNode;
+    public int depth;
 
-    private int reachBack;
+    public double reachBack;
+    public Queue<Node> children;
 
-    public ArticulationPtsTuple(Node currNode, int depth, Node fromNode) {
-        this.currNode = currNode;
+    public ArticulationPtsTuple(Node currNode, int depth, ArticulationPtsTuple fromNode) {
+        this.node = currNode;
         this.depth = depth;
         this.fromNode = fromNode;
     }
-
 }
