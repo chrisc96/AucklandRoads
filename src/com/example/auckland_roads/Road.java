@@ -10,7 +10,7 @@ class Road {
     private final int type;
     private final String name;
     private final String city;
-    private final boolean notOneWay;     // 0 - both ways allowed
+    final boolean oneWay;     // 0 - both ways allowed
                             // 1 - one way (from beginning to end of road)
 
     private final int speedLim;   // 0 - 5
@@ -49,7 +49,7 @@ class Road {
         bs = new BasicStroke(determineWidthRoad(roadClass));
 
         // Converting these to booleans makes more logical sense
-        this.notOneWay = notOneWay != 0;
+        this.oneWay = notOneWay != 0;
         this.carNotAllowed = carNotAllowed != 0;
         this.bikeNotAllowed = bikeNotAllowed != 0;
         this.PedestrianNotAllowed = PedestrianNotAllowed != 0;

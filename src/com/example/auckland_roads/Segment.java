@@ -30,4 +30,16 @@ class Segment {
     List<Location> getCoords() {
         return coords;
     }
+
+    public Node theOtherEnd(Node oneEnd) {
+        if (oneEnd.getNodeID() != nodeID1.getNodeID() && oneEnd.getNodeID() != nodeID2.getNodeID()) {
+            return null;
+        }
+
+        if (oneEnd.getNodeID() == nodeID2.getNodeID()) {
+            return nodeID1;
+        } else {
+            return nodeID2;
+        }
+    }
 }

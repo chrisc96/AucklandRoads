@@ -1,5 +1,6 @@
 package com.example.auckland_roads;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class AStarSearch {
@@ -30,19 +31,31 @@ class AStarSearch {
 
             if (priorityNode.currentNode == this.goal) break;
 
+            Node oneEnd = priorityNode.currentNode;
+
             for (Segment segs : priorityNode.currentNode.getSegmentOut()) {
-                Node neighbour = null;
-                if (priorityNode.currentNode.getNodeID() == segs.nodeID1.getNodeID()) neighbour = segs.nodeID2;
-                if (priorityNode.currentNode.getNodeID() == segs.nodeID2.getNodeID()) neighbour = segs.nodeID1;
+
+                Node neighbour = segs.theOtherEnd(oneEnd);
 
                 assert neighbour != null;
-                if (!neighbour.visited) {
-                    double costToNeighbour = priorityNode.costFromStart + segs.getLength();
-                    double estimatedTotal = costToNeighbour + neighbour.getLocation().distance(goal.getLocation());
-                    fringe.offer(new AStarSearchNode(neighbour, priorityNode.currentNode, costToNeighbour, estimatedTotal));
+
+                if (!isOneWay(oneEnd, segs, neighbour)) {
+                    if (!neighbour.visited) {
+                        double costToNeighbour = priorityNode.costFromStart + segs.getLength();
+                        double estimatedTotal = costToNeighbour + neighbour.getLocation().distance(goal.getLocation());
+                        fringe.offer(new AStarSearchNode(neighbour, priorityNode.currentNode, costToNeighbour, estimatedTotal));
+                    }
                 }
             }
         }
         return this.goal;
     }
+
+
+    private static boolean isOneWay(Node oneEnd, Segment seg, Node theOtherEnd) {
+        return ((RoadMap.roadMap.get(seg.getRoadID()).oneWay)) && oneEnd.getNodeID() == seg.nodeID2.getNodeID()
+                && theOtherEnd.getNodeID() == seg.nodeID1.getNodeID();
+    }
 }
+
+

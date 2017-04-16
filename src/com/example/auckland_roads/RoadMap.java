@@ -12,7 +12,7 @@ public class RoadMap extends GUI {
     static RoadMap map; // Object for this class to be accessed from others
 
     // Main data structures
-    private static List<Segment> segmentList = new ArrayList<>();
+    static List<Segment> segmentList = new ArrayList<>();
     private static List<Polygon> polygonList = new ArrayList<>();
     static Map<Integer, Node> nodeMap = new HashMap<>();
     static Map<Integer, Road> roadMap = new HashMap<>();
