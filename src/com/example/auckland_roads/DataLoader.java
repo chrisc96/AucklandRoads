@@ -13,6 +13,7 @@ class DataLoader {
     private final Map<Integer,Road> loadRoadMap = new HashMap<>();
     private final List<Segment> loadSegmentList = new ArrayList<>();
     private final List<Polygon> polygonList = new ArrayList<>();
+    private final List<Restriction> restrictionList = new ArrayList<>();
 
     Map<Integer, Node> parseNodes(File nodes) {
         try {
@@ -159,6 +160,26 @@ class DataLoader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    List<Restriction> parseRestrictions(File file) {
+        BufferedReader bfReader;
+        try {
+            bfReader = new BufferedReader(new FileReader(file));
+            bfReader.readLine(); // throw away the first line
+            String line = bfReader.readLine();
+            while (line != null) {
+                Restriction restriction = new Restriction(line, loadNodeMap, loadRoadMap);
+                restrictionList.add(restriction);
+                line = bfReader.readLine();
+            }
+            bfReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File " + file + " Not Found");
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
+        return restrictionList;
     }
 
     private Color determineColorRoad(int roadClass) {

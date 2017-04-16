@@ -17,7 +17,8 @@ public class RoadMap extends GUI {
     private static List<Polygon> polygonList = new ArrayList<>();
     static Map<Integer, Node> nodeMap = new HashMap<>();
     static Map<Integer, Road> roadMap = new HashMap<>();
-    private static final List<Node> selectedNodes = new ArrayList<>();
+    private static List<Node> selectedNodes = new ArrayList<>();
+    private static List<Restriction> restrictionList = new ArrayList<>();
 
     // Searching by search bar
     static final Trie trie = new Trie();
@@ -507,7 +508,7 @@ public class RoadMap extends GUI {
     // Methods to execute on load
 
     @Override
-    protected void onLoad(File nodes, File roads, File segments, File polygons) {
+    protected void onLoad(File nodes, File roads, File segments, File polygons, File restrictions) {
         DataLoader dl = new DataLoader();
         nodeMap = dl.parseNodes(nodes);
         roadMap = dl.parseRoads(roads);
@@ -515,6 +516,10 @@ public class RoadMap extends GUI {
 
         if (polygons != null) {
             polygonList = dl.parsePoly(polygons);
+        }
+
+        if (restrictions != null) {
+            restrictionList = dl.parseRestrictions(restrictions);
         }
 
         ArticulationSearch(); // Calculates Articulation Points on load, button toggles their display
