@@ -232,26 +232,34 @@ public class RoadMap extends GUI {
     private void drawNodes(Graphics g, Location origin, double scale) {
         for (Node node : nodeMap.values()) {
             Point pt = node.getLocation().asPoint(origin,scale);
-            g.setColor(node.col);
-            g.fillOval(pt.x-node.OvalSize/2, pt.y-node.OvalSize/2,node.OvalSize,node.OvalSize);
+            if (checkNodeClipping(pt)) {
+                g.setColor(node.col);
+                g.fillOval(pt.x - node.OvalSize / 2, pt.y - node.OvalSize / 2, node.OvalSize, node.OvalSize);
+            }
         }
 
         for (Node n: selectedNodes){
             Point pt = n.getLocation().asPoint(origin, scale);
-            g.setColor(Color.YELLOW);
-            g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
-            drawNodeInfo();
+            if (checkNodeClipping(pt)) {
+                g.setColor(Color.YELLOW);
+                g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                drawNodeInfo();
+            }
         }
         for (Node n: nodesTravelled){
             Point pt = n.getLocation().asPoint(origin, scale);
-            g.setColor(Color.RED);
-            g.fillOval(pt.x - n.OvalSize/2, pt.y - n.OvalSize/2 ,n.OvalSize,n.OvalSize);
+            if (checkNodeClipping(pt)) {
+                g.setColor(Color.RED);
+                g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+            }
         }
         if (artPtsToggle) {
             for (Node n : artPts.getArtPts()) {
                 Point pt = n.getLocation().asPoint(origin, scale);
-                g.setColor(Color.GREEN);
-                g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                if (checkNodeClipping(pt)) {
+                    g.setColor(Color.GREEN);
+                    g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                }
             }
         }
     }
@@ -266,11 +274,13 @@ public class RoadMap extends GUI {
             for (int j = 1; j < len; j++) {
                 Point p1 = aSegmentList.getCoords().get(j - 1).asPoint(origin, scale);
                 Point p2 = aSegmentList.getCoords().get(j).asPoint(origin, scale);
-                if (rd.getRoadClass() != 0) {
-                    g.drawLine(p1.x, p1.y, p2.x, p2.y);
-                } else {
-                    if (zoom >= 1) {
+                if (checkSegmentClipping(p1, p2)) {
+                    if (rd.getRoadClass() != 0) {
                         g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                    } else {
+                        if (zoom >= 1) {
+                            g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                        }
                     }
                 }
             }
@@ -287,7 +297,9 @@ public class RoadMap extends GUI {
                         for (int l = 1; l < coords.size(); l++) {
                             Point p1 = seg.getCoords().get(l - 1).asPoint(origin, scale);
                             Point p2 = seg.getCoords().get(l).asPoint(origin, scale);
-                            g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                            if (checkSegmentClipping(p1, p2)) {
+                                g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                            }
                         }
                     }
                 }
@@ -299,7 +311,9 @@ public class RoadMap extends GUI {
             for (int j = 1; j < coords.size(); j++) {
                 Point p1 = aSegmentsTravelled.getCoords().get(j - 1).asPoint(origin, scale);
                 Point p2 = aSegmentsTravelled.getCoords().get(j).asPoint(origin, scale);
-                g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                if (checkSegmentClipping(p1, p2)) {
+                    g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                }
             }
         }
     }
@@ -318,7 +332,9 @@ public class RoadMap extends GUI {
                         yCoords[j] = p1.y;
                     }
                     g.setColor(aPolygonList.getColor());
-                    g.fillPolygon(xCoords, yCoords, xCoords.length);
+                    if (checkPolygonClipping(xCoords, yCoords, xCoords.length)) {
+                        g.fillPolygon(xCoords, yCoords, xCoords.length);
+                    }
                 }
             }
         }
@@ -344,6 +360,28 @@ public class RoadMap extends GUI {
         segmentsTravelled.clear();
         nodesTravelled.clear();
         selectedNodes.clear();
+    }
+
+   private boolean checkNodeClipping(Point pt) {
+        return (pt.getLocation().getX() >= 0 && pt.getLocation().getX() <= getDrawingAreaDimension().getWidth() &&
+                pt.getLocation().getY() >= 0 && pt.getLocation().getY() <= getDrawingAreaDimension().getHeight());
+   }
+
+    private boolean checkSegmentClipping(Point p1, Point p2) {
+        return (p1.getLocation().getX() >= 0 && p1.getLocation().getX() <= getDrawingAreaDimension().getWidth() &&
+                p1.getLocation().getY() >= 0 && p1.getLocation().getY() <= getDrawingAreaDimension().getWidth() ||
+                p2.getLocation().getX() >= 0 && p2.getLocation().getX() <= getDrawingAreaDimension().getWidth() &&
+                p2.getLocation().getY() >= 0 && p2.getLocation().getY() <= getDrawingAreaDimension().getHeight()
+                );
+    }
+
+    private boolean checkPolygonClipping(int[] xCoords, int[] yCoords, int length) {
+        for (int i = 0; i < length; i++) {
+            if (xCoords[i] >= 0 && yCoords[i] >= 0 && xCoords[i] <= getDrawingAreaDimension().width && yCoords[i] <= getDrawingAreaDimension().getHeight()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Displaying information/text
