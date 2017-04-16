@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class RoadMap extends GUI {
 
     // Misc
     private final JTextArea output = getTextOutputArea();
-    private Graphics g;
+    public Graphics g;
     private boolean first_run = true;
 
     // Initial scale/origin so that custom scale can be set after redraw is run for first time
@@ -48,15 +49,14 @@ public class RoadMap extends GUI {
     int mouseX, mouseY, mouseXStart, mouseYStart, mouseXEnd, mouseYEnd, xDif, yDif;
 
 
-
     @Override
     protected void redraw(Graphics g) {
         if (first_run) {
             instructions();
-            this.g = g;
             first_run = false;
         }
-        drawMap(g);
+        this.g = g;
+        drawMap();
     }
 
     @Override
@@ -64,15 +64,17 @@ public class RoadMap extends GUI {
         Location mousePos = Location.newFromPoint(e.getPoint(), origin, scale);
         closest = null;
         for(Node n: nodeMap.values()) {
-            double minDist = n.OvalSize/scale;
-            double dist = mousePos.distance(n.getLocation());
-            if(dist < minDist) {
-                closest = n;
-                drawNodeInfo();
-                if (selectedNodes.size() < 2) {
-                    selectedNodes.add(closest);
+            if (n.clickable) {
+                double minDist = n.OvalSize / scale;
+                double dist = mousePos.distance(n.getLocation());
+                if (dist < minDist) {
+                    closest = n;
+                    drawNodeInfo();
+                    if (selectedNodes.size() < 2) {
+                        selectedNodes.add(closest);
+                    }
+                    break;
                 }
-                break;
             }
         }
         // Allows you to click outside of the node selected, provided it's not another node
@@ -111,7 +113,6 @@ public class RoadMap extends GUI {
         redraw(g);
     }
 
-    @Override
     protected void AStarSearch() {
         if (selectedNodes.size() == 2) {
             AStarSearch route = new AStarSearch(selectedNodes.get(0), selectedNodes.get(1));
@@ -129,9 +130,10 @@ public class RoadMap extends GUI {
                 }
                 endNode = endNode.pathFrom;
             }
+
             resetAStarFieldsNodes();
-            selectedNodes.clear();
             outputTraversedInfo();
+
         }
     }
 
@@ -154,7 +156,6 @@ public class RoadMap extends GUI {
                 }
             }
         }
-        System.out.println(artPts.getArtPts().size());
     }
 
     // Switches for GUI operability inc. buttons, mouse panning and zooming.
@@ -229,44 +230,61 @@ public class RoadMap extends GUI {
 
     // Drawing methods (segments, nodes)
 
-    private void drawNodes(Graphics g, Location origin, double scale) {
-        for (Node node : nodeMap.values()) {
-            Point pt = node.getLocation().asPoint(origin,scale);
-            if (checkNodeClipping(pt)) {
-                g.setColor(node.col);
-                g.fillOval(pt.x - node.OvalSize / 2, pt.y - node.OvalSize / 2, node.OvalSize, node.OvalSize);
+    private void drawNodes(Location origin, double scale) {
+        if (nodeMap != null) {
+            for (Node node : nodeMap.values()) {
+                Point pt = node.getLocation().asPoint(origin, scale);
+                if (checkNodeClipping(pt)) {
+                    g.setColor(node.col);
+                    g.fillOval(pt.x - node.OvalSize / 2, pt.y - node.OvalSize / 2, node.OvalSize, node.OvalSize);
+                }
             }
         }
+        if (selectedNodes != null) {
+            for (Node n : selectedNodes) {
+                Point pt = n.getLocation().asPoint(origin, scale);
+                if (checkNodeClipping(pt)) {
+                    g.setColor(Color.white);
+                    g.fillOval(pt.x - n.OvalSize/2 - 3, pt.y - n.OvalSize/2 - 3, n.OvalSize + 6, n.OvalSize + 6);
+                    g.setColor(new Color(47,153,244));
+                    g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                    drawNodeInfo();
+                }
+            }
+        }
+        if (nodesTravelled != null) {
+            for (int i = 0; i < nodesTravelled.size(); i++) {
+                Node n = nodesTravelled.get(i);
 
-        for (Node n: selectedNodes){
-            Point pt = n.getLocation().asPoint(origin, scale);
-            if (checkNodeClipping(pt)) {
-                g.setColor(Color.YELLOW);
-                g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
-                drawNodeInfo();
-            }
-        }
-        for (Node n: nodesTravelled){
-            Point pt = n.getLocation().asPoint(origin, scale);
-            if (checkNodeClipping(pt)) {
-                g.setColor(Color.RED);
-                g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                Point pt = n.getLocation().asPoint(origin, scale);
+                if (checkNodeClipping(pt)) {
+                    g.setColor(Color.white);
+                    g.fillOval(pt.x - n.OvalSize/2 - 3, pt.y - n.OvalSize/2 - 3, n.OvalSize + 6, n.OvalSize + 6);
+
+                    if (i == 0) g.setColor(new Color(57,255, 73));
+                    else if (i == nodesTravelled.size() - 1) g.setColor(new Color(255, 38, 3));
+                    else g.setColor(new Color(47,153,244));
+                    g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                }
             }
         }
         if (artPtsToggle) {
-            for (Node n : artPts.getArtPts()) {
-                Point pt = n.getLocation().asPoint(origin, scale);
-                if (checkNodeClipping(pt)) {
-                    g.setColor(Color.GREEN);
-                    g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+            if (artPts != null) {
+                for (Node n : artPts.getArtPts()) {
+                    Point pt = n.getLocation().asPoint(origin, scale);
+                    if (checkNodeClipping(pt)) {
+                        g.setColor(Color.GREEN);
+                        g.fillOval(pt.x - n.OvalSize / 2, pt.y - n.OvalSize / 2, n.OvalSize, n.OvalSize);
+                    }
                 }
             }
         }
     }
 
-    private void drawSegments(Graphics g, Location origin, double scale) {
+    private void drawSegments(Location origin, double scale) {
         Graphics2D g2 = (Graphics2D) g;
         for (Segment aSegmentList : segmentList) {
+
             int len = aSegmentList.getCoords().size();
             Road rd = roadMap.get(aSegmentList.roadID);
             g.setColor(rd.getCol());
@@ -277,9 +295,16 @@ public class RoadMap extends GUI {
                 if (checkSegmentClipping(p1, p2)) {
                     if (rd.getRoadClass() != 0) {
                         g.drawLine(p1.x, p1.y, p2.x, p2.y);
-                    } else {
+                    }
+                    else {
                         if (zoom >= 1) {
+                            aSegmentList.nodeID1.clickable = true;
+                            aSegmentList.nodeID2.clickable = true;
                             g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                        }
+                        else {
+                            aSegmentList.nodeID1.clickable = false;
+                            aSegmentList.nodeID2.clickable = false;
                         }
                     }
                 }
@@ -305,7 +330,7 @@ public class RoadMap extends GUI {
                 }
             }
         }
-        g.setColor(Color.RED);
+        g.setColor(new Color(47,153,244));
         for (Segment aSegmentsTravelled : segmentsTravelled) {
             List<Location> coords = aSegmentsTravelled.getCoords();
             for (int j = 1; j < coords.size(); j++) {
@@ -318,7 +343,7 @@ public class RoadMap extends GUI {
         }
     }
 
-    private void drawPolygons(Graphics g, Location origin, double scale) {
+    private void drawPolygons(Location origin, double scale) {
         if (polygonList != null) {
             int[] xCoords;
             int[] yCoords;
@@ -343,10 +368,10 @@ public class RoadMap extends GUI {
 
     // Helper/Refactoring methods
 
-    private void drawMap(Graphics g) {
-        drawPolygons(g, origin, scale);
-        drawNodes(g, origin, scale);
-        drawSegments(g, origin, scale);
+    private void drawMap() {
+        drawPolygons(origin, scale);
+        drawSegments(origin, scale);
+        drawNodes(origin, scale);
     }
 
     private void resetAStarFieldsNodes() {
@@ -396,8 +421,19 @@ public class RoadMap extends GUI {
         output.setText("");
 
         for (Segment s : segmentsTravelled) {
+            String roadName = "";
             Road r = roadMap.get(s.getRoadID());
-            String roadName = toTitleCase(r.getName() + ", " + r.getCity());
+
+            // Roundabouts have (-,-) output, this deals with that
+            if (r.getName().equals("-")) {
+                roadName = "Roundabout\t";
+            }
+            else if (r.getCity().equals("-")) {
+                roadName = roadName + toTitleCase(r.getName() + "\t");
+            }
+            else {
+                roadName = toTitleCase(r.getName() + ", " + r.getCity());
+            }
 
             if (!roadNameToLength.containsKey(roadName)) {
                 roadNameList.add(roadName);
@@ -410,17 +446,23 @@ public class RoadMap extends GUI {
             totalDistance += s.getLength();
         }
 
+
+        DecimalFormat df = new DecimalFormat("#0.000");
         output.append("A* Path Breakdown: \n\n");
         output.append("Start:\t");
+
         boolean start = true;
         for (String info : roadNameList) {
             if (!start) output.append("Node:\t");
             start = false;
-            String str = info + "\t" + (double) Math.round(roadNameToLength.get(info)*1000)/1000 + " km \n";
+
+            String str = info + "\t" + df.format(roadNameToLength.get(info)) + " km \n";
             output.append(str);
         }
 
-        output.append("\nGoal reached. Total Distance: \t\t" + (double) Math.round(totalDistance*1000) / 1000 + "km");
+        output.append("\nTotal Distance: \t\t\t" + df.format(totalDistance) + " km");
+
+        selectedNodes.clear();
     }
 
     private void drawNodeInfo() {
@@ -456,7 +498,9 @@ public class RoadMap extends GUI {
                         "      Pan using click and drag of map\n" +
                         "      Pan using arrow keys (up, down, left, right\n" +
                         "      Search for roads using the search bar\n" +
-                        "      Select nodes (small circles) for info\n"
+                        "      Select nodes (small circles) for info\n" +
+                        "      Select two nodes and then click the A* Search Button\n" +
+                        "      Click the Articulation Points button to show/hide them\n"
         );
     }
 

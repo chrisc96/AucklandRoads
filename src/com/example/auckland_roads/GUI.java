@@ -268,13 +268,14 @@ public abstract class GUI {
 
 		JButton AStarSearch = new JButton("A* Search");
 		AStarSearch.addActionListener(ev -> {
-            AStarSearch();
+			AStarSearch();
             redraw();
         });
 
-		JButton ArtPts = new JButton("Articulation Points");
+		JButton ArtPts = new JButton("Show Articulation Points");
 		ArtPts.addActionListener(ev -> {
             map.artPtsToggle = !map.artPtsToggle;
+            ArtPts.setText("Hide Articulation Points");
             redraw();
         });
 
@@ -344,7 +345,7 @@ public abstract class GUI {
 		navigation.add(east);
 
 		JPanel SearchButtons = new JPanel();
-		SearchButtons.setMaximumSize(new Dimension(150,60));
+		SearchButtons.setMaximumSize(new Dimension(200,60));
 		SearchButtons.setLayout(new GridLayout(2, 1));
 		SearchButtons.add(AStarSearch);
 		SearchButtons.add(ArtPts);
@@ -431,6 +432,7 @@ public abstract class GUI {
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
 		drawing.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
+
 
 		drawing.getActionMap().put("left", new AbstractAction() {
 			@Override

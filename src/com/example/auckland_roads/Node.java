@@ -7,11 +7,13 @@ import static com.example.auckland_roads.RoadMap.map;
 
 public class Node {
 
+
+    public boolean clickable = true;
     private final int nodeID;
     private final Location location;
 
     final Color col;
-    final int OvalSize = (int) ((map.getDrawingAreaDimension().width/(map.getDrawingAreaDimension().height)) * 4);
+    final int OvalSize = (int) ((map.getDrawingAreaDimension().width/(map.getDrawingAreaDimension().height)) * 5);
 
     // A* Search Fields:
     boolean visited = false;

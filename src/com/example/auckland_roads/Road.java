@@ -88,7 +88,7 @@ class Road {
         int width = 0;
         switch (roadClass) {
             case 0:
-                width = 1;
+                width = 2;
                 break;
             case 1:
                 width = 2;
@@ -100,7 +100,7 @@ class Road {
                 width = 3;
                 break;
             case 4:
-                width = 3;
+                width = 4;
                 break;
         }
         return width;
